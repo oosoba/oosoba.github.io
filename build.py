@@ -49,6 +49,12 @@ SHORT = {
 }
 
 
+def is_erratum(title):
+    """Corrigenda / errata are correction notices, not standalone papers."""
+    t = (title or "").strip().lower()
+    return t.startswith(("corrigendum", "corrigenda", "erratum", "errata"))
+
+
 def featured_publications():
     with open(os.path.join(SOURCE, "papers.json")) as f:
         papers = json.load(f)
@@ -59,6 +65,7 @@ def featured_publications():
     kept = jp.dedupe(papers)
     kept = [(i, jp.apply_overrides(p)) for i, p in kept if jp.is_lead_author(p)]
     kept = [(i, p) for i, p in kept if p.get("year")]
+    kept = [(i, p) for i, p in kept if not is_erratum(p.get("title", ""))]
 
     groups = {k: [] for k in ORDER}
     for i, p in kept:
