@@ -41,13 +41,27 @@
   var btns = Array.prototype.slice.call(document.querySelectorAll('.fontswitch button'));
   if (!btns.length) return;
   function apply(f) {
-    if (!stacks[f]) f = 'atkinson';
+    if (!stacks[f]) f = 'lexend';
     document.documentElement.style.setProperty('--font', stacks[f]);
     try { localStorage.setItem('font', f); } catch (e) {}
     btns.forEach(function (b) { b.classList.toggle('active', b.dataset.font === f); });
   }
   btns.forEach(function (b) { b.addEventListener('click', function () { apply(b.dataset.font); }); });
-  var saved = 'atkinson';
-  try { saved = localStorage.getItem('font') || 'atkinson'; } catch (e) {}
+  var saved = 'lexend';
+  try { saved = localStorage.getItem('font') || 'lexend'; } catch (e) {}
   apply(saved);
+})();
+
+/* Publication cluster filter (chips). */
+(function () {
+  var chips = Array.prototype.slice.call(document.querySelectorAll('#cluster-chips .chip'));
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.pub-group'));
+  if (!chips.length) return;
+  function filter(c) {
+    chips.forEach(function (ch) { ch.classList.toggle('active', ch.dataset.cluster === c); });
+    groups.forEach(function (g) { g.hidden = !(c === 'all' || g.dataset.cluster === c); });
+  }
+  chips.forEach(function (ch) {
+    ch.addEventListener('click', function () { filter(ch.dataset.cluster); });
+  });
 })();

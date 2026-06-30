@@ -51,7 +51,7 @@
 
 :root {
   /* Swap this one line to try a different typeface site-wide. */
-  --font: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font: "Lexend", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Palette — a step lighter than near-black, still firmly dark. */
   --bg:          #1b1e25;
@@ -217,51 +217,52 @@ body.js .panel.active { display: block; animation: fade 0.25s ease; }
 
 .lead { font-size: 1.08rem; color: var(--text-strong); }
 
-/* ---- publications --------------------------------------------------------- */
-/* Collapsible research clusters (native <details>; default closed). */
-.cluster {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--bg-elev);
-  margin-bottom: 0.7rem;
-}
-.cluster-head {
-  list-style: none;
-  cursor: pointer;
+/* ---- publications: filter chips + grouped list ---------------------------- */
+.chips {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.6rem;
+}
+.chip {
+  appearance: none;
+  display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
-  padding: 0.85rem 1.05rem;
-  border-radius: var(--radius);
-  user-select: none;
+  gap: 0.4rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.84rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.12s ease, color 0.12s ease, background 0.12s ease;
 }
-.cluster-head::-webkit-details-marker { display: none; }
-.cluster-head::before {
-  content: "";
-  flex: none;
-  width: 0.5rem; height: 0.5rem;
-  border-right: 2px solid var(--accent);
-  border-bottom: 2px solid var(--accent);
-  transform: rotate(-45deg);
-  transition: transform 0.18s ease;
-}
-.cluster[open] > .cluster-head::before { transform: rotate(45deg); }
-.cluster-head:hover { background: var(--accent-soft); }
-.cluster-name {
-  flex: 1;
-  font-weight: 700;
+.chip:hover { border-color: var(--accent-dim); color: var(--text-strong); }
+.chip.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
   color: var(--text-strong);
-  font-size: 0.96rem;
 }
-.cluster-head .count {
-  flex: none;
-  font-size: 0.82rem;
+.chip .chip-count {
+  font-size: 0.76rem;
   color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
-.pub-list {
-  padding: 0.35rem 1.05rem 0.8rem;
-  border-top: 1px solid var(--border);
+.chip.active .chip-count { color: var(--accent); }
+
+.pub-group { margin-bottom: 1.8rem; }
+.pub-group[hidden] { display: none; }
+.pub-group-title {
+  font-size: 0.82rem !important;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.4rem !important;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .pub { padding: 0.55rem 0; }

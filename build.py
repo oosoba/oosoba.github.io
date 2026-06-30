@@ -37,6 +37,16 @@ TITLES = {
     "noise": "Noise Benefits in Machine Learning",
 }
 
+# Short labels for the filter chips (full titles used for section headings).
+SHORT = {
+    "fairness": "Fairness",
+    "defense": "Defense",
+    "health": "Health",
+    "policy-modeling": "Policy Modeling",
+    "fuzzy": "Fuzzy Systems",
+    "noise": "Noise Benefits",
+}
+
 
 def featured_publications():
     with open(os.path.join(SOURCE, "papers.json")) as f:
@@ -76,30 +86,36 @@ def render_meta(p):
 
 
 def render_publications(groups):
+    nonempty = [k for k in ORDER if groups.get(k)]
+    total = sum(len(groups[k]) for k in nonempty)
     out = []
-    for key in ORDER:
-        items = groups.get(key, [])
-        if not items:
-            continue
-        plural = "paper" if len(items) == 1 else "papers"
-        out.append('<details class="cluster">')
-        out.append(
-            f'  <summary class="cluster-head">'
-            f'<span class="cluster-name">{html.escape(TITLES[key])}</span>'
-            f'<span class="count">{len(items)} {plural}</span></summary>'
-        )
-        out.append('  <div class="pub-list">')
-        for p in items:
+
+    # Filter chips (always visible): All + one per cluster.
+    out.append('<div class="chips" id="cluster-chips" role="tablist" aria-label="Filter by research area">')
+    out.append('  <button type="button" class="chip active" data-cluster="all">'
+               f'All <span class="chip-count">{total}</span></button>')
+    for k in nonempty:
+        out.append(f'  <button type="button" class="chip" data-cluster="{k}">'
+                   f'{html.escape(SHORT.get(k, TITLES[k]))} '
+                   f'<span class="chip-count">{len(groups[k])}</span></button>')
+    out.append('</div>')
+
+    # Grouped sections (filtered by the chips).
+    out.append('<div class="pub-groups">')
+    for k in nonempty:
+        out.append(f'<section class="pub-group" data-cluster="{k}">')
+        out.append(f'  <h3 class="pub-group-title">{html.escape(TITLES[k])}</h3>')
+        for p in groups[k]:
             url = jp.paper_url(p)
             title = html.escape(p.get("title", "").strip())
             title_html = (f'<a class="pub-title" href="{html.escape(url)}">{title}</a>'
                           if url else f'<span class="pub-title">{title}</span>')
-            out.append('    <div class="pub">')
-            out.append(f'      {title_html}')
-            out.append(f'      <p class="pub-meta">{render_meta(p)}</p>')
-            out.append('    </div>')
-        out.append('  </div>')
-        out.append('</details>')
+            out.append('  <div class="pub">')
+            out.append(f'    {title_html}')
+            out.append(f'    <p class="pub-meta">{render_meta(p)}</p>')
+            out.append('  </div>')
+        out.append('</section>')
+    out.append('</div>')
     return "\n".join(out)
 
 
