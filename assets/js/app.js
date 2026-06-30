@@ -30,3 +30,24 @@
 
   show(location.hash.replace('#', '') || valid[0], false);
 })();
+
+/* Temporary font switcher (footer) — preview Atkinson / Lexend / Inter. */
+(function () {
+  var stacks = {
+    atkinson: '"Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    lexend:   '"Lexend", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    inter:    '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+  };
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.fontswitch button'));
+  if (!btns.length) return;
+  function apply(f) {
+    if (!stacks[f]) f = 'atkinson';
+    document.documentElement.style.setProperty('--font', stacks[f]);
+    try { localStorage.setItem('font', f); } catch (e) {}
+    btns.forEach(function (b) { b.classList.toggle('active', b.dataset.font === f); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { apply(b.dataset.font); }); });
+  var saved = 'atkinson';
+  try { saved = localStorage.getItem('font') || 'atkinson'; } catch (e) {}
+  apply(saved);
+})();

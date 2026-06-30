@@ -19,15 +19,20 @@ SOURCE = jp.DEFAULT_SOURCE
 TEMPLATE = os.path.join(ROOT, "index.template.html")
 OUTPUT = os.path.join(ROOT, "index.html")
 
-# Display order + titles for the research clusters (keys match assign_categories).
-ORDER = ["fairness", "defense", "health", "abm-rl", "econ", "complex", "fuzzy", "noise"]
+# Merge several source clusters into one display cluster.
+MERGE = {
+    "abm-rl": "policy-modeling",
+    "econ": "policy-modeling",
+    "complex": "policy-modeling",
+}
+
+# Display order + titles for the research clusters (post-merge keys).
+ORDER = ["fairness", "defense", "health", "policy-modeling", "fuzzy", "noise"]
 TITLES = {
     "fairness": "Algorithmic Fairness, AI Ethics & Privacy",
     "defense": "AI for National Security & Defense",
     "health": "Health, Epidemiology & Public Health AI",
-    "abm-rl": "Agent-Based Modeling & Reinforcement Learning for Policy",
-    "econ": "Economic Networks & Racial Wealth Inequality",
-    "complex": "Complex Systems & Policy Analysis Reform",
+    "policy-modeling": "Computational Social Science & Policy Modeling",
     "fuzzy": "Fuzzy Systems & Causal Modeling",
     "noise": "Noise Benefits in Machine Learning",
 }
@@ -46,7 +51,9 @@ def featured_publications():
 
     groups = {k: [] for k in ORDER}
     for i, p in kept:
-        groups.setdefault(cats.get(i, "fairness"), []).append(p)
+        key = cats.get(i, "fairness")
+        key = MERGE.get(key, key)
+        groups.setdefault(key, []).append(p)
     for k in groups:
         groups[k].sort(key=lambda p: (p.get("year", 0), p.get("citation_count", 0) or 0),
                        reverse=True)
