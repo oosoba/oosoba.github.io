@@ -61,19 +61,3 @@
     ch.addEventListener('click', function () { filter(ch.dataset.tag); });
   });
 })();
-
-/* Color scheme switcher (temporary studies tool; footer). */
-(function () {
-  var btns = Array.prototype.slice.call(document.querySelectorAll('.schemeswitch button'));
-  if (!btns.length) return;
-  function apply(s) {
-    if (s && s !== 'slate') document.documentElement.setAttribute('data-scheme', s);
-    else { document.documentElement.removeAttribute('data-scheme'); s = 'slate'; }
-    try { localStorage.setItem('scheme', s); } catch (e) {}
-    btns.forEach(function (b) { b.classList.toggle('active', b.dataset.scheme === s); });
-  }
-  btns.forEach(function (b) { b.addEventListener('click', function () { apply(b.dataset.scheme); }); });
-  var saved = 'slate';
-  try { saved = localStorage.getItem('scheme') || 'slate'; } catch (e) {}
-  apply(saved);
-})();

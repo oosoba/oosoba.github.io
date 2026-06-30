@@ -23,16 +23,18 @@
   /* Swap this one line to try a different typeface site-wide. */
   --font: "Lexend", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  /* Palette: a step lighter than near-black, still firmly dark. */
-  --bg:          #1b1e25;
-  --bg-elev:     #232730;
-  --border:      #353b47;
-  --text:        #dee1e8;
-  --text-strong: #f4f6fa;
-  --muted:       #9aa1b1;
-  --accent:      #88b0ff;
-  --accent-dim:  #7d93c4;
-  --accent-soft: rgba(136, 176, 255, 0.12);
+  /* Palette: "Amber Raised" — cool-warm charcoal with a warm amber accent,
+     and a slightly lighter content panel (--content-bg) for a two-tone surface. */
+  --bg:          #141519;
+  --bg-elev:     #1f2228;
+  --content-bg:  #1e2128;
+  --border:      #34373f;
+  --text:        #e3e1da;
+  --text-strong: #faf7f0;
+  --muted:       #a39e92;
+  --accent:      #e0a86a;
+  --accent-dim:  #b98a52;
+  --accent-soft: rgba(224, 168, 106, 0.13);
   --maxw:        1080px;
   --sidebar-w:   250px;
   --radius:      10px;
@@ -134,7 +136,13 @@ strong { color: var(--text-strong); font-weight: 600; }
 }
 
 /* ---- content / tabs ------------------------------------------------------- */
-.content { min-width: 0; }
+.content {
+  min-width: 0;
+  background: var(--content-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: clamp(1.2rem, 3vw, 2rem) clamp(1.3rem, 3vw, 2.2rem);
+}
 
 .tabs {
   display: flex;
@@ -368,74 +376,3 @@ footer {
 .post-item-meta { font-size: 0.82rem; color: var(--muted); margin-top: 0.1rem; }
 .post-item-summary { margin: 0.25rem 0 0.35rem; color: var(--text); font-size: 0.95rem; }
 .posts-empty { color: var(--muted); font-size: 0.9rem; }
-
-/* ==========================================================================
-   Color studies — temporary scheme switcher (remove once one is chosen).
-   Each scheme overrides the palette tokens; default (:root) is "slate".
-   ========================================================================== */
-html[data-scheme="amber"] {       /* cool charcoal + warm amber (editorial two-tone) */
-  --bg: #17191f; --bg-elev: #1f2228; --border: #34373f;
-  --text: #e3e1da; --text-strong: #faf7f0; --muted: #a39e92;
-  --accent: #e0a86a; --accent-dim: #b98a52; --accent-soft: rgba(224,168,106,0.13);
-}
-html[data-scheme="nord"] {        /* nord frost — cohesive with the code blocks */
-  --bg: #1c2230; --bg-elev: #232b3b; --border: #38415a;
-  --text: #d8dee9; --text-strong: #eceff4; --muted: #93a0b8;
-  --accent: #88c0d0; --accent-dim: #6f97a8; --accent-soft: rgba(136,192,208,0.14);
-}
-html[data-scheme="aubergine"] {   /* dark aubergine + lavender (jewel two-tone) */
-  --bg: #1b1722; --bg-elev: #241f2e; --border: #3b3348;
-  --text: #e2dde8; --text-strong: #f6f2fa; --muted: #a79db4;
-  --accent: #c79bf0; --accent-dim: #9f7bc4; --accent-soft: rgba(199,155,240,0.14);
-}
-html[data-scheme="forest"] {      /* deep green-charcoal + sage (natural, low-strain) */
-  --bg: #15191a; --bg-elev: #1d2222; --border: #333b39;
-  --text: #dde3df; --text-strong: #f1f6f3; --muted: #98a39d;
-  --accent: #8fcf9a; --accent-dim: #6fa67b; --accent-soft: rgba(143,207,154,0.13);
-}
-
-.schemeswitch { display: inline-flex; flex-wrap: wrap; gap: 0.3rem; align-items: center; margin-left: 0.6rem; }
-.schemeswitch span { color: var(--muted); }
-.schemeswitch button {
-  appearance: none; background: none; border: 1px solid var(--border);
-  color: var(--muted); font: inherit; font-size: 0.78rem;
-  padding: 0.1rem 0.5rem; border-radius: 5px; cursor: pointer;
-}
-.schemeswitch button:hover { color: var(--text); border-color: var(--accent-dim); }
-.schemeswitch button.active { color: var(--text-strong); border-color: var(--accent); background: var(--accent-soft); }
-
-/* ---- Amber two-tone background variants (studies) ------------------------- */
-
-/* Amber · Raised: dark warm page + a slightly lighter dark content panel. */
-html[data-scheme="amber-raised"] {
-  --bg: #141519; --bg-elev: #1f2228; --border: #34373f;
-  --text: #e3e1da; --text-strong: #faf7f0; --muted: #a39e92;
-  --accent: #e0a86a; --accent-dim: #b98a52; --accent-soft: rgba(224,168,106,0.13);
-}
-html[data-scheme="amber-raised"] .content {
-  background: #1e2128;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: clamp(1.2rem, 3vw, 2rem) clamp(1.3rem, 3vw, 2.2rem);
-}
-
-/* Amber · Light: dark warm sidebar + a light cream reading panel (dark text).
-   Redeclaring the palette tokens on .content re-themes its whole interior. */
-html[data-scheme="amber-light"] {
-  --bg: #15161a; --bg-elev: #1f2228; --border: #34373f;
-  --text: #e3e1da; --text-strong: #faf7f0; --muted: #a39e92;
-  --accent: #e0a86a; --accent-dim: #b98a52; --accent-soft: rgba(224,168,106,0.13);
-}
-html[data-scheme="amber-light"] .content {
-  background: #f4ecdd;
-  border-radius: 14px;
-  padding: clamp(1.3rem, 3vw, 2rem) clamp(1.5rem, 3vw, 2.4rem);
-  --text: #433d31;
-  --text-strong: #211c14;
-  --muted: #837763;
-  --border: #e1d6c1;
-  --bg-elev: #ece2cf;
-  --accent: #9c6b22;
-  --accent-dim: #b07f33;
-  --accent-soft: rgba(156, 107, 34, 0.12);
-}
