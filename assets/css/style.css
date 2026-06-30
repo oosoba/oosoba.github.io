@@ -2,27 +2,12 @@
    ope-osoba.me custom minimal dark theme
    ========================================================================== */
 
-/* ---- self-hosted font: Atkinson Hyperlegible (legibility-first) ----------- */
-@font-face {
-  font-family: "Atkinson Hyperlegible";
-  font-style: normal; font-weight: 400; font-display: swap;
-  src: url("../fonts/atkinson-400-normal.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Atkinson Hyperlegible";
-  font-style: normal; font-weight: 700; font-display: swap;
-  src: url("../fonts/atkinson-700-normal.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Atkinson Hyperlegible";
-  font-style: italic; font-weight: 400; font-display: swap;
-  src: url("../fonts/atkinson-400-italic.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Atkinson Hyperlegible";
-  font-style: italic; font-weight: 700; font-display: swap;
-  src: url("../fonts/atkinson-700-italic.woff2") format("woff2");
-}
+/* ---- self-hosted font: Lexend (SIL OFL 1.1; license in assets/fonts/OFL-Lexend.txt)
+   Owner's font preference, in order: Lexend > Inter > Atkinson Hyperlegible.
+   All three are OFL-licensed and self-hostable; to switch, replace the two
+   @font-face srcs below and the --font stack, and drop the matching woff2s in
+   assets/fonts/. (Inter ships a true italic; Lexend does not — italics are
+   synthesized.) ------------------------------------------------------------- */
 @font-face {
   font-family: "Lexend";
   font-style: normal; font-weight: 400; font-display: swap;
@@ -32,21 +17,6 @@
   font-family: "Lexend";
   font-style: normal; font-weight: 700; font-display: swap;
   src: url("../fonts/lexend-700-normal.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal; font-weight: 400; font-display: swap;
-  src: url("../fonts/inter-400-normal.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal; font-weight: 700; font-display: swap;
-  src: url("../fonts/inter-700-normal.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Inter";
-  font-style: italic; font-weight: 400; font-display: swap;
-  src: url("../fonts/inter-400-italic.woff2") format("woff2");
 }
 
 :root {
@@ -332,25 +302,3 @@ footer {
   }
   .panel { max-width: none; }
 }
-
-/* ---- temporary font switcher (remove once a font is chosen) ---------------- */
-.fontswitch {
-  display: inline-flex;
-  gap: 0.3rem;
-  align-items: center;
-  margin-left: 0.6rem;
-}
-.fontswitch span { color: var(--muted); }
-.fontswitch button {
-  appearance: none;
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  font: inherit;
-  font-size: 0.78rem;
-  padding: 0.1rem 0.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.fontswitch button:hover { color: var(--text); border-color: var(--accent-dim); }
-.fontswitch button.active { color: var(--text-strong); border-color: var(--accent); background: var(--accent-soft); }
