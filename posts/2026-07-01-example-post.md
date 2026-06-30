@@ -3,7 +3,7 @@ title: Example Post: How Writing Works Here
 date: 2026-07-01
 summary: A throwaway example showing Markdown, code highlighting, math, and tags. Delete or replace it.
 tags: [meta, example]
-draft: false
+draft: true
 ---
 
 This is an example post. It exists to show what the blog pipeline supports. Delete this file (`posts/2026-07-01-example-post.md`) or replace it with your own.

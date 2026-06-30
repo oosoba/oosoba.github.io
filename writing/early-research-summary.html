@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Early Research Summary (pre-2018) · Osonde A. Osoba</title>
+  <meta name="description" content="An archived summary of my foundational work: noise benefits in statistical machine learning, Bayesian function approximation, and the early turn toward ML for policy.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#141519">
+  <link rel="canonical" href="https://ope-osoba.me/writing/early-research-summary.html">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preload" href="../assets/fonts/lexend-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/code.css">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <meta property="og:title" content="Early Research Summary (pre-2018)">
+  <meta property="og:description" content="An archived summary of my foundational work: noise benefits in statistical machine learning, Bayesian function approximation, and the early turn toward ML for policy.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ope-osoba.me/writing/early-research-summary.html">
+  <meta property="og:image" content="https://ope-osoba.me/images/profile.jpg">
+</head>
+<body class="post">
+  <div class="post-wrap">
+    <nav class="post-nav"><a href="../index.html#writing">&larr; Osonde A. Osoba &middot; Writings &amp; Talks</a></nav>
+    <article class="post-article">
+      <h1 class="post-title">Early Research Summary (pre-2018)</h1>
+      <div class="post-meta">December 1, 2017 &middot; <span class="tags"><span class="tag">research</span><span class="tag">machine-learning</span><span class="tag">archive</span></span></div>
+<p><em>This is an archived research summary from an earlier version of my website. It describes the foundational arc of my work and is kept here for reference.</em></p>
+<p>My research interests and output have always been varied. As a broad binning, about half of my work falls under statistical machine learning, and the other half under technology policy.</p>
+<p>Most of my work focuses either on applying machine learning to problems in policy analysis, or on examining pathologies in the use of machine learning for decision-making. The latter includes work on fairness in the use of ML for decisions in social institutions: see, for example, this <a href="https://www.rand.org/pubs/research_reports/RR2708.html">RAND report</a> or my <a href="https://www.youtube.com/watch?v=4l_LZ5NcIBI">TEDx talk</a>. The former includes identifying and developing ML tools better suited to policy and systems analysis, such as <a href="https://arxiv.org/abs/1906.11247">fuzzy cognitive maps for the causal simulation of policy counterfactuals</a>.</p>
+<h2 id="noise-benefits-in-machine-learning">Noise benefits in machine learning</h2>
+<p>I spent most of my doctoral and post-doctoral years on the theoretical foundations of statistical machine learning, specifically establishing stochastic-resonance (noise-benefit) phenomena in learning algorithms.</p>
+<p>My dissertation proved that the controlled injection of noise can improve the convergence time of Expectation-Maximization (EM) algorithms. This is an instance of a noise benefit, or stochastic resonance, in statistical signal processing. We call this noise-assisted improvement the <a href="http://sipi.usc.edu/~kosko/FNL-September-2013.pdf">Noisy Expectation-Maximization (NEM) algorithm</a>. Many iterative statistical estimation and learning algorithms are special cases of EM, so the noise-induced speed-up applies to them as well. The most notable such case is backpropagation training for neural networks (see this <a href="http://sipi.usc.edu/~kosko/N-BP-Neural-Networks-26June2020.pdf">paper</a> with B. Kosko and K. Audhkhasi).</p>
+<h2 id="bayesian-function-approximation">Bayesian function approximation</h2>
+<p>I also worked on the effect of using approximate model functions (priors and likelihoods) in Bayesian inference. I proved that Bayes' theorem produces posterior densities whose approximation quality matches that of the underlying model-function approximations. This is the <a href="http://sipi.usc.edu/~kosko/SMC-B-Bayes-Fuzzy-Approximation-September-2011.pdf">Bayesian Approximation Theorem (BAT)</a>. I also demonstrated a robust method for approximating arbitrary priors or likelihoods of compact support, either from data or from expert input. The method represents bounded closed-form model functions exactly and efficiently, and so subsumes many traditional applications of Bayesian inference.</p>
+<p>For a more comprehensive and current view of my work, see my <a href="https://scholar.google.com/citations?hl=en&amp;user=w5oYjbYAAAAJ&amp;view_op=list_works&amp;sortby=pubdate">Google Scholar profile</a>.</p>
+    </article>
+    <footer class="post-footer">&copy; <span id="year">2026</span> Osonde A. Osoba &middot; <a href="../index.html#writing">More writing</a></footer>
+  </div>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <script defer src="../assets/katex/katex.min.js"></script>
+  <script defer src="../assets/katex/auto-render.min.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.post-article'), {
+          delimiters: [
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+</body>
+</html>

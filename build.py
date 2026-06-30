@@ -251,6 +251,9 @@ def render_posts():
     if not os.path.isdir(POSTS_DIR):
         return []
     os.makedirs(WRITING_DIR, exist_ok=True)
+    for old in os.listdir(WRITING_DIR):  # clear stale generated post pages
+        if old.endswith(".html"):
+            os.remove(os.path.join(WRITING_DIR, old))
     with open(POST_TEMPLATE) as f:
         tmpl = f.read()
     md = make_markdown()
