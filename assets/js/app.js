@@ -44,3 +44,20 @@
     ch.addEventListener('click', function () { filter(ch.dataset.cluster); });
   });
 })();
+
+/* Blog post tag filter (Writing tab). */
+(function () {
+  var chips = Array.prototype.slice.call(document.querySelectorAll('#tag-chips .chip'));
+  var items = Array.prototype.slice.call(document.querySelectorAll('.post-item'));
+  if (!chips.length) return;
+  function filter(tag) {
+    chips.forEach(function (ch) { ch.classList.toggle('active', ch.dataset.tag === tag); });
+    items.forEach(function (it) {
+      var tags = (it.dataset.tags || '').split(' ');
+      it.hidden = !(tag === 'all' || tags.indexOf(tag) !== -1);
+    });
+  }
+  chips.forEach(function (ch) {
+    ch.addEventListener('click', function () { filter(ch.dataset.tag); });
+  });
+})();

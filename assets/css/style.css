@@ -302,3 +302,69 @@ footer {
   }
   .panel { max-width: none; }
 }
+
+/* ==========================================================================
+   Blog: post reading pages + Writing-tab post index
+   ========================================================================== */
+
+/* ---- standalone post page ---- */
+.post-wrap {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: clamp(1.6rem, 4vw, 3.2rem) clamp(1.1rem, 4vw, 1.6rem) 4rem;
+}
+.post-nav { margin-bottom: 2rem; font-size: 0.9rem; }
+.post-nav a { color: var(--muted); }
+.post-nav a:hover { color: var(--accent); text-decoration: none; }
+.post-title {
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--text-strong);
+  margin: 0 0 0.5rem;
+}
+.post-meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+
+/* article typography */
+.post-article { font-size: 1.02rem; }
+.post-article h2 { color: var(--text-strong); font-size: 1.4rem; margin: 2.2rem 0 0.6rem; line-height: 1.25; }
+.post-article h3 { color: var(--text-strong); font-size: 1.15rem; margin: 1.8rem 0 0.5rem; }
+.post-article p { margin: 0 0 1.1rem; }
+.post-article ul, .post-article ol { padding-left: 1.3rem; margin: 0 0 1.1rem; }
+.post-article li { margin-bottom: 0.35rem; }
+.post-article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.post-article img { max-width: 100%; height: auto; border-radius: 8px; }
+.post-article hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+.post-article blockquote {
+  margin: 1.2rem 0;
+  padding: 0.2rem 0 0.2rem 1.1rem;
+  border-left: 3px solid var(--accent-dim);
+  color: var(--muted);
+}
+.post-article table { border-collapse: collapse; width: 100%; margin: 1.2rem 0; font-size: 0.92rem; }
+.post-article th, .post-article td { border: 1px solid var(--border); padding: 0.45rem 0.7rem; text-align: left; }
+.post-article th { background: var(--bg-elev); color: var(--text-strong); }
+.post-footer { margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.82rem; }
+
+/* ---- tags (shared) ---- */
+.tags { display: inline-flex; flex-wrap: wrap; gap: 0.35rem; }
+.tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.05rem 0.5rem;
+}
+.post-meta .tags { margin-left: 0.2rem; vertical-align: middle; }
+
+/* ---- Writing-tab post index ---- */
+.post-list { margin: 0 0 1.5rem; }
+.post-item { padding: 0.7rem 0; border-bottom: 1px solid var(--border); }
+.post-item[hidden] { display: none; }
+.post-item-title { color: var(--text-strong); font-weight: 700; }
+.post-item-title:hover { color: var(--accent); text-decoration: none; }
+.post-item-meta { font-size: 0.82rem; color: var(--muted); margin-top: 0.1rem; }
+.post-item-summary { margin: 0.25rem 0 0.35rem; color: var(--text); font-size: 0.95rem; }
+.posts-empty { color: var(--muted); font-size: 0.9rem; }

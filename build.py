@@ -11,10 +11,18 @@ import json
 import os
 import re
 import sys
+from collections import Counter
+from datetime import datetime
+
+import markdown
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(ROOT, "scripts"))
 import json_to_publications as jp  # noqa: E402
+
+POSTS_DIR = os.path.join(ROOT, "posts")
+WRITING_DIR = os.path.join(ROOT, "writing")
+POST_TEMPLATE = os.path.join(ROOT, "post.template.html")
 
 SOURCE = jp.DEFAULT_SOURCE
 TEMPLATE = os.path.join(ROOT, "index.template.html")
@@ -172,10 +180,133 @@ def render_publications(groups):
     return "\n".join(out)
 
 
+# --------------------------------------------------------------------------
+# Blog posts: posts/*.md -> writing/<slug>.html + Writing-tab index
+# --------------------------------------------------------------------------
+
+def make_markdown():
+    return markdown.Markdown(
+        extensions=[
+            "pymdownx.superfences",   # fenced code blocks
+            "pymdownx.highlight",     # Pygments highlighting at build time
+            "pymdownx.arithmatex",    # math -> KaTeX-ready \( \) / \[ \]
+            "pymdownx.tilde",         # ~~strikethrough~~
+            "tables", "footnotes", "attr_list", "md_in_html", "sane_lists", "toc",
+        ],
+        extension_configs={
+            "pymdownx.highlight": {"css_class": "highlight", "guess_lang": False},
+            "pymdownx.arithmatex": {"generic": True},
+        },
+    )
+
+
+def parse_front_matter(text):
+    """Minimal YAML-ish front matter: key: value, plus tags: [a, b] and draft."""
+    if not text.startswith("---"):
+        return {}, text
+    lines = text.split("\n")
+    end = next((i for i in range(1, len(lines)) if lines[i].strip() == "---"), None)
+    if end is None:
+        return {}, text
+    meta = {}
+    for line in lines[1:end]:
+        if ":" not in line:
+            continue
+        k, v = line.split(":", 1)
+        k, v = k.strip(), v.strip()
+        if k == "tags":
+            v = v.strip("[]")
+            meta["tags"] = [t.strip().strip("\"'") for t in v.split(",") if t.strip()]
+        elif k == "draft":
+            meta["draft"] = v.lower() in ("true", "yes", "1")
+        else:
+            meta[k] = v.strip("\"'")
+    return meta, "\n".join(lines[end + 1:])
+
+
+def format_date(d):
+    try:
+        return datetime.strptime(d.strip(), "%Y-%m-%d").strftime("%B %-d, %Y")
+    except (ValueError, AttributeError):
+        return d
+
+
+def format_post_meta(datestr, tags):
+    s = html.escape(format_date(datestr)) if datestr else ""
+    if tags:
+        chips = "".join(f'<span class="tag">{html.escape(t)}</span>' for t in tags)
+        s += (" &middot; " if s else "") + f'<span class="tags">{chips}</span>'
+    return s
+
+
+def render_posts():
+    """Render each posts/*.md to writing/<slug>.html; return metadata, newest first."""
+    if not os.path.isdir(POSTS_DIR):
+        return []
+    os.makedirs(WRITING_DIR, exist_ok=True)
+    with open(POST_TEMPLATE) as f:
+        tmpl = f.read()
+    md = make_markdown()
+    posts = []
+    for fn in sorted(os.listdir(POSTS_DIR)):
+        if not fn.endswith(".md"):
+            continue
+        with open(os.path.join(POSTS_DIR, fn)) as f:
+            meta, body = parse_front_matter(f.read())
+        if meta.get("draft"):
+            continue
+        md.reset()
+        content = md.convert(body)
+        slug = meta.get("slug") or re.sub(r"^\d{4}-\d{2}-\d{2}-", "", fn[:-3])
+        title = meta.get("title", slug)
+        summary = meta.get("summary", "")
+        tags = meta.get("tags", [])
+        page = (tmpl.replace("{{TITLE}}", html.escape(title))
+                    .replace("{{SUMMARY}}", html.escape(summary))
+                    .replace("{{META}}", format_post_meta(meta.get("date", ""), tags))
+                    .replace("{{CONTENT}}", content))
+        with open(os.path.join(WRITING_DIR, slug + ".html"), "w") as f:
+            f.write(page)
+        posts.append({"slug": slug, "title": title, "summary": summary,
+                      "tags": tags, "date": meta.get("date", "")})
+    posts.sort(key=lambda p: p["date"], reverse=True)
+    return posts
+
+
+def render_post_index(posts):
+    if not posts:
+        return '<p class="posts-empty">Posts are in progress and will appear here.</p>'
+    out = []
+    tagcount = Counter(t for p in posts for t in p["tags"])
+    if tagcount:
+        out.append('<div class="chips" id="tag-chips" aria-label="Filter posts by tag">')
+        out.append('  <button type="button" class="chip active" data-tag="all">'
+                   f'All <span class="chip-count">{len(posts)}</span></button>')
+        for tag, c in sorted(tagcount.items()):
+            out.append(f'  <button type="button" class="chip" data-tag="{html.escape(tag)}">'
+                       f'{html.escape(tag)} <span class="chip-count">{c}</span></button>')
+        out.append('</div>')
+    out.append('<div class="post-list">')
+    for p in posts:
+        datatags = " ".join(html.escape(t) for t in p["tags"])
+        out.append(f'<div class="post-item" data-tags="{datatags}">')
+        out.append(f'  <a class="post-item-title" href="writing/{html.escape(p["slug"])}.html">'
+                   f'{html.escape(p["title"])}</a>')
+        if p["summary"]:
+            out.append(f'  <p class="post-item-summary">{html.escape(p["summary"])}</p>')
+        out.append(f'  <div class="post-item-meta">{format_post_meta(p["date"], p["tags"])}</div>')
+        out.append('</div>')
+    out.append('</div>')
+    return "\n".join(out)
+
+
 def main():
     groups = featured_publications()
     total = sum(len(v) for v in groups.values())
     pubs_html = render_publications(groups)
+
+    posts = render_posts()
+    posts_html = render_post_index(posts)
 
     with open(TEMPLATE) as f:
         template = f.read()
@@ -183,6 +314,7 @@ def main():
         print("ERROR: marker <!--PUBLICATIONS--> not found in template", file=sys.stderr)
         return 1
     page = template.replace("<!--PUBLICATIONS-->", pubs_html)
+    page = page.replace("<!--POSTS-->", posts_html)
     with open(OUTPUT, "w") as f:
         f.write(page)
 
@@ -192,6 +324,7 @@ def main():
     for k in ORDER:
         if groups.get(k):
             print(f"    {len(groups[k]):2d}  {TITLES[k]}")
+    print(f"  {len(posts)} blog post(s) -> writing/")
     return 0
 
 

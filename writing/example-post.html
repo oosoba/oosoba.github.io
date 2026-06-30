@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example Post: How Writing Works Here · Osonde A. Osoba</title>
+  <meta name="description" content="A throwaway example showing Markdown, code highlighting, math, and tags. Delete or replace it.">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preload" href="../assets/fonts/lexend-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/code.css">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <meta property="og:title" content="Example Post: How Writing Works Here">
+  <meta property="og:description" content="A throwaway example showing Markdown, code highlighting, math, and tags. Delete or replace it.">
+  <meta property="og:type" content="article">
+</head>
+<body class="post">
+  <div class="post-wrap">
+    <nav class="post-nav"><a href="../index.html#writing">&larr; Osonde A. Osoba &middot; Writing</a></nav>
+    <article class="post-article">
+      <h1 class="post-title">Example Post: How Writing Works Here</h1>
+      <div class="post-meta">July 1, 2026 &middot; <span class="tags"><span class="tag">meta</span><span class="tag">example</span></span></div>
+<p>This is an example post. It exists to show what the blog pipeline supports. Delete this file (<code>posts/2026-07-01-example-post.md</code>) or replace it with your own.</p>
+<h2 id="writing-a-post">Writing a post</h2>
+<p>Each post is a Markdown file in <code>posts/</code>, named <code>YYYY-MM-DD-slug.md</code>, with a small front-matter block at the top:</p>
+<div class="highlight"><pre><span></span><code><span class="nn">---</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">My Post Title</span>
+<span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2026-07-15</span>
+<span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">One-line teaser for the index.</span>
+<span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">governance</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ai</span><span class="p p-Indicator">]</span>
+<span class="nt">draft</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nn">---</span>
+</code></pre></div>
+<p>Run <code>python build.py</code> and the post is rendered to <code>writing/&lt;slug&gt;.html</code>, with an entry added to the <strong>Writing</strong> tab. Set <code>draft: true</code> to keep a post out of the build.</p>
+<h2 id="code">Code</h2>
+<p>Fenced code blocks are highlighted at build time, so there is no client-side highlighter to load:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">noisy_em</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">noise_scale</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;One NEM step: inject annealed noise into the E-step.&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">sample_noise</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">noise_scale</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">m_step</span><span class="p">(</span><span class="n">e_step</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">))</span>
+</code></pre></div>
+<p>Inline <code>code</code> works too.</p>
+<h2 id="math">Math</h2>
+<p>Inline math renders with KaTeX, for example <span class="arithmatex">\(p(R \mid S, G)\)</span> over demographic groups. Display math is also supported:</p>
+<div class="arithmatex">\[
+\mathbb{E}_{q}\!\left[\log p(x, z)\right] - \mathbb{E}_{q}\!\left[\log q(z)\right] \;=\; \log p(x) - \mathrm{KL}\!\left(q \,\|\, p(z \mid x)\right).
+\]</div>
+<blockquote>
+<p>Math is loaded only on post pages, so the rest of the site stays light.</p>
+</blockquote>
+<h2 id="tags">Tags</h2>
+<p>The tags in the front matter become filter chips on the Writing tab, so readers can narrow to a topic. Tags are display-and-filter only; there are no separate per-tag pages.</p>
+    </article>
+    <footer class="post-footer">&copy; <span id="year">2026</span> Osonde A. Osoba &middot; <a href="../index.html#writing">More writing</a></footer>
+  </div>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <script defer src="../assets/katex/katex.min.js"></script>
+  <script defer src="../assets/katex/auto-render.min.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.querySelector('.post-article'), {
+          delimiters: [
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+</body>
+</html>
