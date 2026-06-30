@@ -16,8 +16,8 @@ sys.path.insert(0, os.path.join(ROOT, "scripts"))
 import json_to_publications as jp  # noqa: E402
 
 SOURCE = jp.DEFAULT_SOURCE
-TEMPLATE = os.path.join(ROOT, "site", "index.template.html")
-OUTPUT = os.path.join(ROOT, "site", "index.html")
+TEMPLATE = os.path.join(ROOT, "index.template.html")
+OUTPUT = os.path.join(ROOT, "index.html")
 
 # Display order + titles for the research clusters (keys match assign_categories).
 ORDER = ["fairness", "defense", "health", "abm-rl", "econ", "complex", "fuzzy", "noise"]
@@ -74,21 +74,25 @@ def render_publications(groups):
         items = groups.get(key, [])
         if not items:
             continue
-        out.append('<div class="cluster">')
+        plural = "paper" if len(items) == 1 else "papers"
+        out.append('<details class="cluster">')
         out.append(
-            f'  <div class="cluster-head"><h3>{html.escape(TITLES[key])}</h3>'
-            f'<span class="count">{len(items)}</span></div>'
+            f'  <summary class="cluster-head">'
+            f'<span class="cluster-name">{html.escape(TITLES[key])}</span>'
+            f'<span class="count">{len(items)} {plural}</span></summary>'
         )
+        out.append('  <div class="pub-list">')
         for p in items:
             url = jp.paper_url(p)
             title = html.escape(p.get("title", "").strip())
             title_html = (f'<a class="pub-title" href="{html.escape(url)}">{title}</a>'
                           if url else f'<span class="pub-title">{title}</span>')
-            out.append('  <div class="pub">')
-            out.append(f'    {title_html}')
-            out.append(f'    <p class="pub-meta">{render_meta(p)}</p>')
-            out.append('  </div>')
-        out.append('</div>')
+            out.append('    <div class="pub">')
+            out.append(f'      {title_html}')
+            out.append(f'      <p class="pub-meta">{render_meta(p)}</p>')
+            out.append('    </div>')
+        out.append('  </div>')
+        out.append('</details>')
     return "\n".join(out)
 
 
