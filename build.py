@@ -9,6 +9,7 @@ Usage:  python3 build.py
 import html
 import json
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -70,6 +71,51 @@ def featured_publications():
     return groups
 
 
+SMALL_WORDS = {
+    "a", "an", "and", "as", "at", "but", "by", "for", "from", "if", "in", "into",
+    "nor", "of", "on", "onto", "or", "over", "per", "so", "the", "to", "up", "via",
+    "vs", "with", "yet",
+}
+
+
+def _cap_token(tok):
+    parts = re.split(r"([-–/])", tok)  # keep hyphen / en-dash / slash delimiters
+    out = []
+    for part in parts:
+        if part in ("-", "–", "/") or not part:
+            out.append(part)
+            continue
+        core = re.sub(r"[^A-Za-z0-9]", "", part)
+        if core and (core.isupper() or any(c.isupper() for c in core[1:])):
+            out.append(part)  # preserve acronym / mixed-case token
+        else:
+            out.append(part[0].upper() + part[1:])
+    return "".join(out)
+
+
+def titlecase(title):
+    """Title-case a paper title, preserving acronyms and lowercasing small words."""
+    if not title:
+        return title
+    words = title.split(" ")
+    res = []
+    new_sentence = True  # first word, or first word after a colon
+    last = len(words) - 1
+    for i, w in enumerate(words):
+        if not w:
+            res.append(w)
+            continue
+        core = re.sub(r"[^A-Za-z0-9]", "", w)
+        if core and (core.isupper() or any(c.isupper() for c in core[1:])):
+            res.append(w)  # preserve acronym / mixed-case
+        elif (not new_sentence) and i != last and core.lower() in SMALL_WORDS:
+            res.append(w.lower())
+        else:
+            res.append(_cap_token(w))
+        new_sentence = w.endswith(":")
+    return " ".join(res)
+
+
 def render_meta(p):
     parts = []
     venue = (p.get("venue") or "").strip()
@@ -107,7 +153,7 @@ def render_publications(groups):
         out.append(f'  <h3 class="pub-group-title">{html.escape(TITLES[k])}</h3>')
         for p in groups[k]:
             url = jp.paper_url(p)
-            title = html.escape(p.get("title", "").strip())
+            title = html.escape(titlecase(p.get("title", "").strip()))
             title_html = (f'<a class="pub-title" href="{html.escape(url)}">{title}</a>'
                           if url else f'<span class="pub-title">{title}</span>')
             out.append('  <div class="pub">')
