@@ -1,0 +1,257 @@
+/* ==========================================================================
+   ope-osoba.me — custom minimal dark theme
+   ========================================================================== */
+
+:root {
+  --bg:          #0e1014;
+  --bg-elev:     #14171d;
+  --border:      #232831;
+  --text:        #d4d8e0;
+  --text-strong: #f1f3f7;
+  --muted:       #868d9c;
+  --accent:      #7aa2f7;
+  --accent-dim:  #5b7bc9;
+  --accent-soft: rgba(122, 162, 247, 0.12);
+  --maxw:        1080px;
+  --sidebar-w:   250px;
+  --radius:      10px;
+  --gap:         clamp(1.75rem, 4vw, 3.25rem);
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+p { margin: 0 0 1rem; }
+strong { color: var(--text-strong); font-weight: 600; }
+
+/* ---- shell ---------------------------------------------------------------- */
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 4.5rem) clamp(1.1rem, 4vw, 2.5rem);
+  display: grid;
+  grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+  gap: var(--gap);
+  align-items: start;
+}
+
+/* ---- sidebar -------------------------------------------------------------- */
+.sidebar {
+  position: sticky;
+  top: clamp(2rem, 5vw, 4.5rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar {
+  width: 158px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  filter: grayscale(12%) contrast(1.02);
+}
+
+.name {
+  margin: 1.15rem 0 0.1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text-strong);
+  line-height: 1.2;
+}
+
+.role {
+  margin: 0 0 0.9rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.blurb {
+  font-size: 0.92rem;
+  color: var(--text);
+  margin-bottom: 1.1rem;
+}
+
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.92rem;
+}
+.sidebar-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.18rem 0;
+  color: var(--text);
+}
+.sidebar-links a:hover { color: var(--accent); text-decoration: none; }
+.sidebar-links a::before {
+  content: "";
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  flex: none;
+}
+
+/* ---- content / tabs ------------------------------------------------------- */
+.content { min-width: 0; }
+
+.tabs {
+  display: flex;
+  gap: 0.35rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.9rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+
+.tab {
+  appearance: none;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.96rem;
+  padding: 0.55rem 0.65rem 0.7rem;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.15s ease;
+}
+.tab:hover { color: var(--text); }
+.tab.active {
+  color: var(--text-strong);
+  border-bottom-color: var(--accent);
+}
+
+/* panels: visible by default (no-JS friendly); JS hides inactive ones */
+.panel { margin-bottom: 2.5rem; max-width: 46rem; }
+body.js .panel { display: none; }
+body.js .panel.active { display: block; animation: fade 0.25s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+.panel h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 2.1rem 0 0.9rem;
+}
+.panel > h2:first-child { margin-top: 0; }
+.panel h3 { color: var(--text-strong); font-size: 1.05rem; margin: 1.4rem 0 0.4rem; }
+.panel ul { padding-left: 1.1rem; margin: 0 0 1rem; }
+.panel li { margin-bottom: 0.4rem; }
+
+.lead { font-size: 1.08rem; color: var(--text-strong); }
+
+/* ---- publications --------------------------------------------------------- */
+.cluster { margin-bottom: 2rem; }
+.cluster-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+.cluster-head h3 {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.cluster-head .count {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.pub { padding: 0.5rem 0; }
+.pub-title {
+  color: var(--text-strong);
+  font-weight: 500;
+  line-height: 1.4;
+}
+.pub-title:hover { color: var(--accent); text-decoration: none; }
+.pub-meta {
+  margin: 0.15rem 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.pub-meta .cite { color: var(--accent-dim); }
+
+.scholar-note { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.6rem; }
+
+/* ---- writing entries ------------------------------------------------------ */
+.entry { padding: 0.55rem 0; border-bottom: 1px solid var(--border); }
+.entry:last-child { border-bottom: none; }
+.entry-title { color: var(--text-strong); font-weight: 500; }
+.entry-meta { font-size: 0.85rem; color: var(--muted); margin-top: 0.1rem; }
+.entry-meta a { color: var(--accent-dim); }
+
+.muted-note {
+  margin-top: 1.4rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+footer {
+  grid-column: 1 / -1;
+  margin-top: 1rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+/* ---- responsive ----------------------------------------------------------- */
+@media (max-width: 760px) {
+  .wrap {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .sidebar {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 1.1rem;
+  }
+  .avatar { width: 92px; height: 116px; }
+  .name { margin-top: 0; font-size: 1.35rem; }
+  .role { width: 100%; }
+  .blurb { width: 100%; }
+  .sidebar-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.2rem 1.1rem;
+    width: 100%;
+  }
+  .panel { max-width: none; }
+}
