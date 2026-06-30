@@ -2,6 +2,22 @@
 
 <!-- start custom head snippets -->
 
+<!-- Default to dark theme when the visitor has no stored preference.
+     Runs before body scripts to avoid a light flash; the masthead toggle still works. -->
+<script>
+  (function () {
+    try {
+      if (!localStorage.getItem('theme')) { localStorage.setItem('theme', 'dark'); }
+      if ((localStorage.getItem('theme') || 'dark') !== 'light') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+
 <!-- Support for Academicons -->
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"></noscript>

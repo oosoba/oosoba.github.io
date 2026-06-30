@@ -31,6 +31,36 @@ LABEL_TO_KEY = {
 
 DEFAULT_SOURCE = "/home/alterego/Sync/worklog/z.career docs/view-papers"
 
+# Fill venue when papers.json lacks it and Scholar can't supply it.
+# Keyed by normalized title. Source: author CV / publisher of record.
+VENUE_OVERRIDES = {
+    "the resilience assessment framework assessing commercial contributions to "
+    "us space force mission resilience": "RAND Corporation",
+}
+
+
+def osoba_rank(paper):
+    """Return Osoba's 0-based author position, or None if not present."""
+    authors = [a.strip() for a in (paper.get("authors") or "").split(" and ") if a.strip()]
+    for i, a in enumerate(authors):
+        if "osoba" in a.lower():
+            return i
+    return None
+
+
+def is_lead_author(paper):
+    """True when Osoba is first or second author (the featured set)."""
+    return osoba_rank(paper) in (0, 1)
+
+
+def apply_overrides(paper):
+    """Return a copy with missing venue filled from VENUE_OVERRIDES."""
+    nt = normalize_title(paper.get("title", ""))
+    if not (paper.get("venue") or "").strip() and nt in VENUE_OVERRIDES:
+        paper = dict(paper)
+        paper["venue"] = VENUE_OVERRIDES[nt]
+    return paper
+
 
 def slugify(title):
     s = title.lower()
@@ -182,6 +212,25 @@ def main(argv=None):
 
     kept = dedupe(papers)
     print(f"papers: {len(papers)} total, {len(kept)} after exact-title dedupe")
+
+    # Featured set: first/second-author pieces only.
+    kept = [(i, p) for i, p in kept if is_lead_author(p)]
+    print(f"  {len(kept)} after restricting to first/second-author pieces")
+
+    # Fill missing bibliographic info; drop records still missing a year.
+    final, dropped = [], []
+    for i, p in kept:
+        p = apply_overrides(p)
+        if not p.get("year"):
+            dropped.append(p.get("title", ""))
+            continue
+        final.append((i, p))
+    kept = final
+    if dropped:
+        print(f"  dropped {len(dropped)} incomplete record(s) with no year:")
+        for t in dropped:
+            print(f"    - {t[:70]}")
+    print(f"  {len(kept)} publications to render")
 
     nd = near_duplicates(papers)
     if nd:

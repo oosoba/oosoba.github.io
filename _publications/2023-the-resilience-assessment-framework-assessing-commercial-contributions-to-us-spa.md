@@ -3,8 +3,8 @@ title: "The Resilience Assessment Framework: Assessing Commercial Contributions 
 collection: publications
 category: defense
 date: 2023-01-01
-venue: ""
-citation: "Osonde Osoba, George Nacouzi, Jeff Hagen, Jonathan Tran, Li Zhang, Marissa Herron, Christopher Lynch, Mel Eisman, Charles Barton (2023). \"The Resilience Assessment Framework: Assessing Commercial Contributions to US Space Force Mission Resilience.\" <i></i>. (Cited by 1.)"
+venue: "RAND Corporation"
+citation: "Osonde Osoba, George Nacouzi, Jeff Hagen, Jonathan Tran, Li Zhang, Marissa Herron, Christopher Lynch, Mel Eisman, Charles Barton (2023). \"The Resilience Assessment Framework: Assessing Commercial Contributions to US Space Force Mission Resilience.\" <i>RAND Corporation</i>. (Cited by 1.)"
 paperurl: "https://apps.dtic.mil/sti/html/trecms/AD1200100/"
 ---
 

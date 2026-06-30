@@ -37,3 +37,82 @@
     "layout/sidebar",
     "layout/json_cv"
 ;
+
+/* ==========================================================================
+   Custom overrides (oosoba) — readability, flow, and the publications page
+   ========================================================================== */
+
+/* 1. Stop long tokens (URLs, long titles) from pushing past the viewport. */
+.page__content,
+.archive__item-title,
+.archive__item-excerpt,
+.page__content p,
+.page__content li {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* 2. Tame the author sidebar in the floated-sidebar range so the reading
+      column gets enough room at "half-screen" widths on large monitors. */
+@media (min-width: 64em) {
+  .sidebar {
+    width: 190px;
+    opacity: 1;
+    padding-right: 1em;
+  }
+  .sidebar .author__avatar img {
+    max-width: 130px;
+  }
+  /* Give the main column the space the narrower sidebar frees up. */
+  .page {
+    width: calc(100% - 190px);
+    padding-right: 0.5em;
+  }
+  .archive {
+    width: 100%;
+  }
+}
+
+/* 3. Below the floated-sidebar breakpoint, keep the avatar modest and let
+      content run full width (single-column reading layout). */
+@media (max-width: 63.99em) {
+  .author__avatar img {
+    max-width: 120px;
+  }
+  .page,
+  .archive {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/* 4. Publication cluster headings: make the research-area grouping read as
+      distinct sections rather than plain run-on headings. */
+.page__content h2[id] {
+  margin-top: 2.2em;
+  padding-left: 0.6em;
+  border-left: 4px solid var(--global-link-color, #2f7d95);
+  font-size: 1.35em;
+  line-height: 1.25;
+}
+.page__content h2[id] + hr {
+  display: none;
+}
+/* Compact, scannable entries within a cluster. */
+.archive__item-title {
+  margin-top: 0.9em;
+  margin-bottom: 0.15em;
+}
+
+/* 5. Jump-nav for clusters at the top of the Publications page. */
+.cluster-nav {
+  margin: 0.5em 0 1.5em;
+  padding: 0.6em 0.8em;
+  border: 1px solid var(--global-border-color, #d9dadb);
+  border-radius: 4px;
+  font-size: 0.85em;
+  line-height: 1.9;
+}
+.cluster-nav strong { margin-right: 0.4em; }
+.cluster-nav a { margin-right: 0.9em; white-space: nowrap; }

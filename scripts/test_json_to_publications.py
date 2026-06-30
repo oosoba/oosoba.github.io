@@ -64,6 +64,30 @@ def test_to_frontmatter_has_required_fields():
     assert '\\"Clash\\"' in fm
 
 
+def test_osoba_rank_and_lead_author():
+    assert jp.osoba_rank({"authors": "Osonde A Osoba and Bart Kosko"}) == 0
+    assert jp.osoba_rank({"authors": "S Navabi and O Osoba"}) == 1
+    assert jp.osoba_rank({"authors": "A and B and C and Osonde Osoba"}) == 3
+    assert jp.osoba_rank({"authors": "Someone Else"}) is None
+    assert jp.is_lead_author({"authors": "Osonde A Osoba and X"}) is True
+    assert jp.is_lead_author({"authors": "S Navabi and O Osoba"}) is True
+    assert jp.is_lead_author({"authors": "A and B and Osonde Osoba"}) is False
+
+
+def test_apply_overrides_fills_missing_venue():
+    paper = {
+        "title": "The Resilience Assessment Framework: Assessing Commercial "
+                 "Contributions to US Space Force Mission Resilience",
+        "venue": "",
+        "year": 2023,
+    }
+    out = jp.apply_overrides(paper)
+    assert out["venue"] == "RAND Corporation"
+    # does not clobber an existing venue
+    paper2 = {"title": paper["title"], "venue": "Somewhere", "year": 2023}
+    assert jp.apply_overrides(paper2)["venue"] == "Somewhere"
+
+
 def test_paperurl_falls_back_to_doi_then_scholar():
     assert jp.paper_url({"pub_url": "https://p", "doi": "10.1/x"}) == "https://p"
     assert jp.paper_url({"pub_url": "", "doi": "10.1/x"}) == "https://doi.org/10.1/x"

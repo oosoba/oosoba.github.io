@@ -24,7 +24,7 @@ Experience
 
 Teaching
 ======
-Graduate courses on probability/statistics, machine learning, stochastic processes, data science, and technology policy at **USC's Viterbi School of Engineering** and the **Pardee RAND Graduate School**. Huddleson Award for Outstanding Teaching (2020). See the [Teaching](/teaching/) page.
+Graduate courses on probability/statistics, machine learning, stochastic processes, data science, and technology policy at **USC's Viterbi School of Engineering** and the **Pardee RAND Graduate School**. Huddleson Award for Outstanding Teaching (2020). See the [Service](/service/) page for appointments, speeches, and teaching.
 
 Service
 ======

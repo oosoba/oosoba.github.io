@@ -7,30 +7,32 @@ redirect_from:
   - /about.html
 ---
 
-I am an AI researcher working on the societal impacts of artificial intelligence — its fairness, governance, and policy. My work combines technical machine-learning research with conceptual and policy analysis, and it has consistently moved in both directions: technical insights surface policy-relevant problems, and real-world stakes drive new technical work.
+I am Osonde Osoba, a researcher working on the societal implications of artificial intelligence. My work sits where machine learning, governance, and public policy meet. It has always run in two directions at once: technical questions surface policy problems worth solving, and the stakes of real deployments pull new technical work into view.
 
-I currently work on responsible AI at **LinkedIn**, where I focus on conceptualizing and operationalizing AI fairness at production scale. LinkedIn is a portal to employment opportunities for hundreds of millions of people, so the stakes of AI in this space are substantial. Much of my work there wrestles with a core tension: how to measure AI fairness while protecting member privacy. I designed and deployed a privacy-preserving fairness-measurement system combining differential privacy, homomorphic encryption, and secure multi-party computation in production.
+I currently work on responsible AI at LinkedIn. The platform mediates access to employment for hundreds of millions of people, so the way its algorithms treat members carries real weight. My focus there is a hard measurement problem: how to assess the fairness of an AI system without compromising member privacy. The tension is concrete. Fairness measurement needs knowledge of demographic groups, but acquiring that knowledge creates the very privacy risk one is trying to avoid. I designed and deployed a production system that measures fairness under encryption, composing differential privacy, homomorphic encryption, and secure multi-party computation.
 
 Career trajectory
 ======
-My technical training is in electrical engineering. My dissertation established theoretical conditions under which carefully injected noise speeds up AI training algorithms — backpropagation and a broad class of statistical learning methods — work that underpins multiple active patents and an ongoing research program.
+My training is in electrical engineering. My dissertation established conditions under which carefully injected noise speeds up the training of statistical learning algorithms, backpropagation among them. This result underpins several patents and a continuing research program.
 
-I then brought that expertise to bear on societal problems through policy research at the **RAND Corporation** (2014–2021). That work fell into two strands: applying AI across policy domains (epidemic-prediction models for the CDC, AI for defensive satellite mission planning, reinforcement-learning models of population-level policy effects); and studying the societal implications of AI more broadly (most notably leading a cross-disciplinary team to develop a framework for algorithmic equity, plus work on value alignment and the limits of standard privacy-preservation mechanisms). I held leadership roles including co-director of RAND's Center for Scalable Computing and Analysis and associate director of the Tech & Narrative Lab, and I taught graduate courses at the **Pardee RAND Graduate School** and **USC's Viterbi School of Engineering** (recognized with the Huddleson Award for Outstanding Teaching in 2020).
+I brought that technical background to policy research at the RAND Corporation, where I worked from 2014 to 2021. The work there fell into two strands. One applied AI to questions across policy domains: epidemic prediction for the CDC, defensive mission planning for satellites, and reinforcement-learning models of population-level policy effects. The other examined the societal implications of AI itself. My most sustained contribution in that second strand was leading a cross-disciplinary team (engineers, philosophers, economists, and lawyers) to build a framework for algorithmic equity in social applications.
 
-Throughout, I have stayed engaged in public outreach and policy influence — op-eds, a 2017 [TEDx talk](https://www.youtube.com/watch?v=4l_LZ5NcIBI) on AI fairness, and service as a Commissioner on the US Chamber of Commerce's Commission on AI Competitiveness, Inclusion, and Innovation (2022).
+I also held research-leadership roles at RAND, including co-director of the Center for Scalable Computing and Analysis and associate director of the Tech & Narrative Lab at the Pardee RAND Graduate School. Alongside the research, I taught graduate courses at Pardee RAND and at USC's Viterbi School of Engineering. That service is collected on the [Service](/service/) page.
 
-Current research interests
+Current interests
 ======
-- **Institutional AI governance** — designing processes that let AI-equipped institutions present credible warrants that their AI deployments are aligned with their values, beyond the alignment of any individual model.
-- **Regulatory fragmentation & AI diffusion** — tracing how fragmented regulatory regimes shape the spread of AI's benefits and harms, and turning regulatory understanding into forecasts of future opportunity ("regulatory intelligence").
-- **Class differences in AI adoption** — characterizing frictions in the diffusion of AI adoption that could telegraph upcoming societal divides.
+My current questions concern how the benefits of AI move through institutions and society, and where that movement fractures.
+
+- **Institutional AI governance.** A deploying institution needs to warrant that its AI systems are aligned with its stated values. This is a problem that sits above the alignment of any single model, and it is largely unsolved.
+- **Regulatory fragmentation.** A patchwork of rules across jurisdictions shapes where the benefits and harms of AI actually land. Read carefully, present regulation also forecasts future opportunity.
+- **Class differences in AI adoption.** Frictions in adoption fall unevenly across the population. Where they fall may telegraph the social divides to come.
 
 Selected work
 ======
-See the [Publications](/publications/) page for the full list. A few representative pieces:
+The [Publications](/publications/) page lists the full record. A few representative pieces:
 
-- *Algorithmic Equity: A Framework for Social Applications* — [RAND](https://www.rand.org/pubs/research_reports/RR2708.html)
-- *AI governance for military decision-making: A proposal for managing complexity* — [Cambridge](https://www.cambridge.org/core/journals/cambridge-forum-on-ai-law-and-governance/article/ai-governance-for-military-decisionmaking-a-proposal-for-managing-complexity/E7C9191E43799181AA72F5835618A45D)
-- *Privacy-Preserving Race/Ethnicity Estimation for Algorithmic Bias Measurement in the US* — [arXiv](https://arxiv.org/pdf/2409.04652)
-- *Steps Towards Value-Aligned Systems* — [AIES](https://dl.acm.org/doi/pdf/10.1145/3375627.3375872)
-- *An Intelligence in Our Image: The Risks of Bias and Errors in Artificial Intelligence* — [RAND](https://www.rand.org/pubs/research_reports/RR1744.html)
+- *Algorithmic Equity: A Framework for Social Applications* ([RAND](https://www.rand.org/pubs/research_reports/RR2708.html))
+- *Privacy-Preserving Race/Ethnicity Estimation for Algorithmic Bias Measurement in the US* ([arXiv](https://arxiv.org/pdf/2409.04652))
+- *Steps Towards Value-Aligned Systems* ([AIES](https://dl.acm.org/doi/pdf/10.1145/3375627.3375872))
+- *Beyond DAGs: Modeling Causal Feedback with Fuzzy Cognitive Maps* ([arXiv](https://arxiv.org/abs/1906.11247))
+- *An Intelligence in Our Image: The Risks of Bias and Errors in Artificial Intelligence* ([RAND](https://www.rand.org/pubs/research_reports/RR1744.html))
