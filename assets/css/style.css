@@ -403,3 +403,39 @@ html[data-scheme="forest"] {      /* deep green-charcoal + sage (natural, low-st
 }
 .schemeswitch button:hover { color: var(--text); border-color: var(--accent-dim); }
 .schemeswitch button.active { color: var(--text-strong); border-color: var(--accent); background: var(--accent-soft); }
+
+/* ---- Amber two-tone background variants (studies) ------------------------- */
+
+/* Amber · Raised: dark warm page + a slightly lighter dark content panel. */
+html[data-scheme="amber-raised"] {
+  --bg: #141519; --bg-elev: #1f2228; --border: #34373f;
+  --text: #e3e1da; --text-strong: #faf7f0; --muted: #a39e92;
+  --accent: #e0a86a; --accent-dim: #b98a52; --accent-soft: rgba(224,168,106,0.13);
+}
+html[data-scheme="amber-raised"] .content {
+  background: #1e2128;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: clamp(1.2rem, 3vw, 2rem) clamp(1.3rem, 3vw, 2.2rem);
+}
+
+/* Amber · Light: dark warm sidebar + a light cream reading panel (dark text).
+   Redeclaring the palette tokens on .content re-themes its whole interior. */
+html[data-scheme="amber-light"] {
+  --bg: #15161a; --bg-elev: #1f2228; --border: #34373f;
+  --text: #e3e1da; --text-strong: #faf7f0; --muted: #a39e92;
+  --accent: #e0a86a; --accent-dim: #b98a52; --accent-soft: rgba(224,168,106,0.13);
+}
+html[data-scheme="amber-light"] .content {
+  background: #f4ecdd;
+  border-radius: 14px;
+  padding: clamp(1.3rem, 3vw, 2rem) clamp(1.5rem, 3vw, 2.4rem);
+  --text: #433d31;
+  --text-strong: #211c14;
+  --muted: #837763;
+  --border: #e1d6c1;
+  --bg-elev: #ece2cf;
+  --accent: #9c6b22;
+  --accent-dim: #b07f33;
+  --accent-soft: rgba(156, 107, 34, 0.12);
+}
