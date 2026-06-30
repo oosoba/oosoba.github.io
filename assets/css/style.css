@@ -368,3 +368,38 @@ footer {
 .post-item-meta { font-size: 0.82rem; color: var(--muted); margin-top: 0.1rem; }
 .post-item-summary { margin: 0.25rem 0 0.35rem; color: var(--text); font-size: 0.95rem; }
 .posts-empty { color: var(--muted); font-size: 0.9rem; }
+
+/* ==========================================================================
+   Color studies — temporary scheme switcher (remove once one is chosen).
+   Each scheme overrides the palette tokens; default (:root) is "slate".
+   ========================================================================== */
+html[data-scheme="amber"] {       /* cool charcoal + warm amber (editorial two-tone) */
+  --bg: #17191f; --bg-elev: #1f2228; --border: #34373f;
+  --text: #e3e1da; --text-strong: #faf7f0; --muted: #a39e92;
+  --accent: #e0a86a; --accent-dim: #b98a52; --accent-soft: rgba(224,168,106,0.13);
+}
+html[data-scheme="nord"] {        /* nord frost — cohesive with the code blocks */
+  --bg: #1c2230; --bg-elev: #232b3b; --border: #38415a;
+  --text: #d8dee9; --text-strong: #eceff4; --muted: #93a0b8;
+  --accent: #88c0d0; --accent-dim: #6f97a8; --accent-soft: rgba(136,192,208,0.14);
+}
+html[data-scheme="aubergine"] {   /* dark aubergine + lavender (jewel two-tone) */
+  --bg: #1b1722; --bg-elev: #241f2e; --border: #3b3348;
+  --text: #e2dde8; --text-strong: #f6f2fa; --muted: #a79db4;
+  --accent: #c79bf0; --accent-dim: #9f7bc4; --accent-soft: rgba(199,155,240,0.14);
+}
+html[data-scheme="forest"] {      /* deep green-charcoal + sage (natural, low-strain) */
+  --bg: #15191a; --bg-elev: #1d2222; --border: #333b39;
+  --text: #dde3df; --text-strong: #f1f6f3; --muted: #98a39d;
+  --accent: #8fcf9a; --accent-dim: #6fa67b; --accent-soft: rgba(143,207,154,0.13);
+}
+
+.schemeswitch { display: inline-flex; flex-wrap: wrap; gap: 0.3rem; align-items: center; margin-left: 0.6rem; }
+.schemeswitch span { color: var(--muted); }
+.schemeswitch button {
+  appearance: none; background: none; border: 1px solid var(--border);
+  color: var(--muted); font: inherit; font-size: 0.78rem;
+  padding: 0.1rem 0.5rem; border-radius: 5px; cursor: pointer;
+}
+.schemeswitch button:hover { color: var(--text); border-color: var(--accent-dim); }
+.schemeswitch button.active { color: var(--text-strong); border-color: var(--accent); background: var(--accent-soft); }
