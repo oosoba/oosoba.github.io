@@ -9,56 +9,28 @@ redirect_from:
 
 {% include base_path %}
 
-Education
-======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+<p style="font-size:1.1em;">
+  <a href="/files/O-Osoba-CV-Dec2025.pdf"><strong>Download full CV (PDF)</strong></a>
+</p>
 
-Work experience
+Summary
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+AI researcher working on the societal impacts of AI — fairness, governance, and policy — bridging technical machine-learning research with policy analysis. Currently responsible AI at LinkedIn; previously policy research at the RAND Corporation (2014–2021). Training in electrical engineering, with a dissertation on noise benefits in statistical learning (basis of multiple patents).
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
-
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
-Skills
+Experience
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* **LinkedIn** — Responsible AI. Conceptualizing and operationalizing AI fairness at production scale; designed and deployed a privacy-preserving fairness-measurement system (differential privacy, homomorphic encryption, secure multi-party computation).
+* **RAND Corporation** (2014–2021) — Researcher and research leadership. Applied AI across policy domains (CDC epidemic prediction, defensive satellite mission planning, RL for policy analysis) and studied AI's societal implications (algorithmic equity, value alignment, privacy). Co-director, Center for Scalable Computing and Analysis; associate director, Tech & Narrative Lab (Pardee RAND Graduate School).
+
+Teaching
+======
+Graduate courses on probability/statistics, machine learning, stochastic processes, data science, and technology policy at **USC's Viterbi School of Engineering** and the **Pardee RAND Graduate School**. Huddleson Award for Outstanding Teaching (2020). See the [Teaching](/teaching/) page.
+
+Service
+======
+* Commissioner, US Chamber of Commerce Commission on AI Competitiveness, Inclusion, and Innovation (2022).
+* Public outreach including a 2017 [TEDx talk](https://www.youtube.com/watch?v=4l_LZ5NcIBI) on AI fairness and multiple op-eds.
 
 Publications
 ======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+See the [Publications](/publications/) page for the full list (also on [Google Scholar](https://scholar.google.com/citations?user=w5oYjbYAAAAJ)).
