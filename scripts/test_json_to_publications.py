@@ -74,6 +74,12 @@ def test_osoba_rank_and_lead_author():
     assert jp.is_lead_author({"authors": "A and B and Osonde Osoba"}) is False
 
 
+def test_osoba_rank_word_boundary():
+    # substring "osoba" inside another surname must NOT match
+    assert jp.osoba_rank({"authors": "M Mosoba and Someone Else"}) is None
+    assert jp.osoba_rank({"authors": "Osonde A. Osoba and X"}) == 0
+
+
 def test_apply_overrides_fills_missing_venue():
     paper = {
         "title": "The Resilience Assessment Framework: Assessing Commercial "

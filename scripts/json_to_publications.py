@@ -43,7 +43,7 @@ def osoba_rank(paper):
     """Return Osoba's 0-based author position, or None if not present."""
     authors = [a.strip() for a in (paper.get("authors") or "").split(" and ") if a.strip()]
     for i, a in enumerate(authors):
-        if "osoba" in a.lower():
+        if re.search(r"\bosoba\b", a.lower()):  # word boundary: avoid "Mosoba" etc.
             return i
     return None
 

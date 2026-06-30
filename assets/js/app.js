@@ -10,8 +10,10 @@
   function show(id, push) {
     if (valid.indexOf(id) === -1) { id = valid[0]; }
     tabs.forEach(function (t) {
-      t.classList.toggle('active', t.dataset.tab === id);
-      t.setAttribute('aria-selected', t.dataset.tab === id ? 'true' : 'false');
+      var on = t.dataset.tab === id;
+      t.classList.toggle('active', on);
+      if (on) { t.setAttribute('aria-current', 'true'); }
+      else { t.removeAttribute('aria-current'); }
     });
     panels.forEach(function (p) { p.classList.toggle('active', p.id === id); });
     if (push && location.hash !== '#' + id) {
@@ -37,7 +39,11 @@
   var groups = Array.prototype.slice.call(document.querySelectorAll('.pub-group'));
   if (!chips.length) return;
   function filter(c) {
-    chips.forEach(function (ch) { ch.classList.toggle('active', ch.dataset.cluster === c); });
+    chips.forEach(function (ch) {
+      var on = ch.dataset.cluster === c;
+      ch.classList.toggle('active', on);
+      ch.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
     groups.forEach(function (g) { g.hidden = !(c === 'all' || g.dataset.cluster === c); });
   }
   chips.forEach(function (ch) {
@@ -51,7 +57,11 @@
   var items = Array.prototype.slice.call(document.querySelectorAll('.post-item'));
   if (!chips.length) return;
   function filter(tag) {
-    chips.forEach(function (ch) { ch.classList.toggle('active', ch.dataset.tag === tag); });
+    chips.forEach(function (ch) {
+      var on = ch.dataset.tag === tag;
+      ch.classList.toggle('active', on);
+      ch.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
     items.forEach(function (it) {
       var tags = (it.dataset.tags || '').split(' ');
       it.hidden = !(tag === 'all' || tags.indexOf(tag) !== -1);

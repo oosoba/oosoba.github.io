@@ -6,18 +6,22 @@
   <title>Osonde A. Osoba</title>
   <meta name="description" content="Osonde A. Osoba, AI researcher working on the societal implications of artificial intelligence: fairness, governance, and policy.">
   <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#141519">
+  <link rel="canonical" href="https://ope-osoba.me/">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preload" href="assets/fonts/lexend-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <meta property="og:title" content="Osonde A. Osoba">
   <meta property="og:description" content="AI researcher: fairness, governance, and policy.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ope-osoba.me/">
+  <meta property="og:image" content="https://ope-osoba.me/images/profile.jpg">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
   <div class="wrap">
 
     <aside class="sidebar">
-      <img class="avatar" src="images/profile.jpg" alt="Osonde A. Osoba">
+      <img class="avatar" src="images/profile.jpg" width="158" height="200" alt="Portrait of Osonde A. Osoba">
       <h1 class="name">Osonde A. Osoba, Ph.D.</h1>
       <p class="role">AI researcher on fairness, governance, &amp; policy</p>
       <p class="blurb">I work on the societal implications of AI, where machine learning, governance, and public policy meet.</p>
@@ -29,15 +33,15 @@
     </aside>
 
     <main class="content">
-      <nav class="tabs" role="tablist">
-        <button class="tab" data-tab="about"        role="tab">About</button>
-        <button class="tab" data-tab="publications" role="tab">Publications</button>
-        <button class="tab" data-tab="service"      role="tab">Service</button>
-        <button class="tab" data-tab="writing"       role="tab">Writing &amp; Talks</button>
+      <nav class="tabs" aria-label="Sections">
+        <button class="tab" data-tab="about"        aria-controls="about">About</button>
+        <button class="tab" data-tab="publications" aria-controls="publications">Publications</button>
+        <button class="tab" data-tab="service"      aria-controls="service">Service</button>
+        <button class="tab" data-tab="writing"       aria-controls="writing">Writing &amp; Talks</button>
       </nav>
 
       <!-- ABOUT ------------------------------------------------------------- -->
-      <section class="panel" id="about" role="tabpanel">
+      <section class="panel" id="about">
         <p class="lead">I am Osonde Osoba, a researcher working on the societal implications of artificial intelligence: its fairness, governance, and policy.</p>
         <p>I currently work on responsible AI at LinkedIn, building production systems that measure AI fairness under strong privacy constraints. My approach pairs technical machine-learning research with policy analysis.</p>
 
@@ -54,46 +58,46 @@
       </section>
 
       <!-- PUBLICATIONS ------------------------------------------------------ -->
-      <section class="panel" id="publications" role="tabpanel">
+      <section class="panel" id="publications">
         <p class="scholar-note">Featured below are pieces on which I am first or second author, grouped by research area. The full record, including co-authored work, is on <a href="https://scholar.google.com/citations?user=w5oYjbYAAAAJ">Google Scholar</a>.</p>
-        <div class="chips" id="cluster-chips" role="tablist" aria-label="Filter by research area">
-  <button type="button" class="chip active" data-cluster="all">All <span class="chip-count">37</span></button>
-  <button type="button" class="chip" data-cluster="fairness">Fairness <span class="chip-count">7</span></button>
-  <button type="button" class="chip" data-cluster="defense">Defense <span class="chip-count">4</span></button>
-  <button type="button" class="chip" data-cluster="policy-modeling">Policy Modeling <span class="chip-count">5</span></button>
-  <button type="button" class="chip" data-cluster="fuzzy">Fuzzy Systems <span class="chip-count">7</span></button>
-  <button type="button" class="chip" data-cluster="noise">Noise Benefits <span class="chip-count">14</span></button>
+        <div class="chips" id="cluster-chips" role="group" aria-label="Filter by research area">
+  <button type="button" class="chip active" data-cluster="all" aria-pressed="true">All <span class="chip-count">37</span></button>
+  <button type="button" class="chip" data-cluster="fairness" aria-pressed="false">Fairness <span class="chip-count">7</span></button>
+  <button type="button" class="chip" data-cluster="defense" aria-pressed="false">Defense <span class="chip-count">4</span></button>
+  <button type="button" class="chip" data-cluster="policy-modeling" aria-pressed="false">Policy Modeling <span class="chip-count">5</span></button>
+  <button type="button" class="chip" data-cluster="fuzzy" aria-pressed="false">Fuzzy Systems <span class="chip-count">7</span></button>
+  <button type="button" class="chip" data-cluster="noise" aria-pressed="false">Noise Benefits <span class="chip-count">14</span></button>
 </div>
 <div class="pub-groups">
 <section class="pub-group" data-cluster="fairness">
   <h3 class="pub-group-title">Algorithmic Fairness, AI Ethics &amp; Privacy</h3>
   <div class="pub">
     <a class="pub-title" href="https://arxiv.org/abs/2409.04652">Privacy-Preserving Race/Ethnicity Estimation for Algorithmic Bias Measurement in the US</a>
-    <p class="pub-meta">arXiv preprint arXiv:2409.04652, 2024 · 2024 · <span class="cite">Cited by 2</span></p>
+    <p class="pub-meta">arXiv preprint arXiv:2409.04652 · 2024 · <span class="cite">Cited by 2</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://dl.acm.org/doi/abs/10.1145/3375627.3375872">Steps Towards Value-Aligned Systems</a>
-    <p class="pub-meta">Proceedings of the AAAI/ACM Conference on AI, Ethics, and Society, 332-336, 2020 · 2020 · <span class="cite">Cited by 13</span></p>
+    <p class="pub-meta">Proceedings of the AAAI/ACM Conference on AI, Ethics, and Society, 332-336 · 2020 · <span class="cite">Cited by 13</span></p>
   </div>
   <div class="pub">
-    <a class="pub-title" href="https://dl.acm.org/doi/abs/10.1145/3375627.3375834">Technocultural Pluralism: A&quot; Clash of Civilizations&quot; in Technology?</a>
-    <p class="pub-meta">Proceedings of the AAAI/ACM Conference on AI, Ethics, and Society, 132-137, 2020 · 2020 · <span class="cite">Cited by 6</span></p>
+    <a class="pub-title" href="https://dl.acm.org/doi/abs/10.1145/3375627.3375834">Technocultural Pluralism: A &quot;Clash of Civilizations&quot; in Technology?</a>
+    <p class="pub-meta">Proceedings of the AAAI/ACM Conference on AI, Ethics, and Society, 132-137 · 2020 · <span class="cite">Cited by 6</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://link.springer.com/article/10.1007/s12553-018-0250-6">Improving Privacy Preservation Policy in the Modern Information Age</a>
-    <p class="pub-meta">Health and Technology 9 (1), 65-75, 2019 · 2019 · <span class="cite">Cited by 26</span></p>
+    <p class="pub-meta">Health and Technology 9 (1), 65-75 · 2019 · <span class="cite">Cited by 26</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://scholar.google.com/scholar?cluster=12376581643656376090&amp;hl=en&amp;oi=scholarr">Trust in Sociotechnical Systems: A Case for Human-AI Joint Design</a>
-    <p class="pub-meta">[2019-MADRID] Congreso Internacional de Tecnología, Ciencia y Sociedad, 2019 · 2019 · <span class="cite">Cited by 1</span></p>
+    <p class="pub-meta">[2019-MADRID] Congreso Internacional de Tecnología, Ciencia y Sociedad · 2019 · <span class="cite">Cited by 1</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://www.rand.org/pubs/research_reports/RR1744.html">An Intelligence in Our Image: The Risks of Bias and Errors in Artificial Intelligence</a>
-    <p class="pub-meta">Rand Corporation, 2017 · 2017 · <span class="cite">Cited by 569</span></p>
+    <p class="pub-meta">Rand Corporation · 2017 · <span class="cite">Cited by 569</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://pdfs.semanticscholar.org/b775/bd1807572e45636e8508667edb5c9fd8cc72.pdf">The Risks of Artificial Intelligence to Security and the Future of Work</a>
-    <p class="pub-meta">RAND, 2017 · 2017 · <span class="cite">Cited by 135</span></p>
+    <p class="pub-meta">RAND · 2017 · <span class="cite">Cited by 135</span></p>
   </div>
 </section>
 <section class="pub-group" data-cluster="defense">
@@ -104,11 +108,11 @@
   </div>
   <div class="pub">
     <a class="pub-title" href="https://www.tandfonline.com/doi/abs/10.1080/10357718.2024.2333817">A Complex-Systems View on Military Decision Making</a>
-    <p class="pub-meta">Australian Journal of International Affairs 78 (2), 237-246, 2024 · 2024 · <span class="cite">Cited by 11</span></p>
+    <p class="pub-meta">Australian Journal of International Affairs 78 (2), 237-246 · 2024 · <span class="cite">Cited by 11</span></p>
   </div>
   <div class="pub">
-    <a class="pub-title" href="https://scholar.google.com/scholar?cluster=7166061352836088172&amp;hl=en&amp;oi=scholarr">Artificial Intelligence and Machine Learning Applications for Defensive Counterspace: A Decision Support Tool Capability Demonstration</a>
-    <p class="pub-meta">&lt; bound method Organization. get_name_with_acronym of&lt; Organization: RAND …, 2024 · 2024</p>
+    <a class="pub-title" href="https://doi.org/10.7249/rra582-1">Artificial Intelligence and Machine Learning Applications for Defensive Counterspace: A Decision Support Tool Capability Demonstration</a>
+    <p class="pub-meta">RAND Corporation · 2024</p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://apps.dtic.mil/sti/html/trecms/AD1200100/">The Resilience Assessment Framework: Assessing Commercial Contributions to US Space Force Mission Resilience</a>
@@ -119,120 +123,120 @@
   <h3 class="pub-group-title">Computational Social Science &amp; Policy Modeling</h3>
   <div class="pub">
     <a class="pub-title" href="https://www.rand.org/content/dam/rand/pubs/working_papers/WRA1200/WRA1259-8/RAND_WRA1259-8.pdf">Exploring Intergenerational Wealth Transfer Dynamics with Agent-Based Models</a>
-    <p class="pub-meta">RAND, 2023 · 2023</p>
+    <p class="pub-meta">RAND · 2023</p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://ieeexplore.ieee.org/abstract/document/9683630/">A Generative Machine Learning Approach to Policy Optimization in Pursuit-Evasion Games</a>
-    <p class="pub-meta">2021 60th IEEE Conference on Decision and Control (CDC), 69-76, 2021 · 2021 · <span class="cite">Cited by 4</span></p>
+    <p class="pub-meta">2021 60th IEEE Conference on Decision and Control (CDC), 69-76 · 2021 · <span class="cite">Cited by 4</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://arxiv.org/abs/2006.05048">Policy-Focused Agent-Based Modeling Using RL Behavioral Models</a>
-    <p class="pub-meta">arXiv preprint arXiv:2006.05048, 2020 · 2020 · <span class="cite">Cited by 16</span></p>
+    <p class="pub-meta">arXiv preprint arXiv:2006.05048 · 2020 · <span class="cite">Cited by 16</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://ieeexplore.ieee.org/abstract/document/9356182/">Modeling Agent Behaviors for Policy Analysis via Reinforcement Learning</a>
-    <p class="pub-meta">2020 19th IEEE International Conference on Machine Learning and Applications …, 2020 · 2020 · <span class="cite">Cited by 13</span></p>
+    <p class="pub-meta">2020 19th IEEE International Conference on Machine Learning and Applications … · 2020 · <span class="cite">Cited by 13</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/9781119485001.ch19">An Artificial Intelligence/Machine Learning Perspective on Social Simulation: New Data and New Challenges</a>
-    <p class="pub-meta">Social‐behavioral modeling for complex systems, 443-476, 2019 · 2019 · <span class="cite">Cited by 19</span></p>
+    <p class="pub-meta">Social‐behavioral modeling for complex systems, 443-476 · 2019 · <span class="cite">Cited by 19</span></p>
   </div>
 </section>
 <section class="pub-group" data-cluster="fuzzy">
   <h3 class="pub-group-title">Fuzzy Systems &amp; Causal Modeling</h3>
   <div class="pub">
     <a class="pub-title" href="https://arxiv.org/abs/1906.11247">Beyond DAGs: Modeling Causal Feedback with Fuzzy Cognitive Maps</a>
-    <p class="pub-meta">arXiv preprint arXiv:1906.11247, 2019 · 2019 · <span class="cite">Cited by 23</span></p>
+    <p class="pub-meta">arXiv preprint arXiv:1906.11247 · 2019 · <span class="cite">Cited by 23</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/9781119485001.ch25">Causal Modeling with Feedback Fuzzy Cognitive Maps</a>
-    <p class="pub-meta">Social‐Behavioral Modeling for Complex Systems, 587-615, 2019 · 2019 · <span class="cite">Cited by 21</span></p>
+    <p class="pub-meta">Social‐Behavioral Modeling for Complex Systems, 587-615 · 2019 · <span class="cite">Cited by 21</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://journals.sagepub.com/doi/abs/10.1177/1548512916680779">Fuzzy Cognitive Maps of Public Support for Insurgency and Terrorism</a>
-    <p class="pub-meta">The journal of defense modeling and simulation 14 (1), 17-32, 2017 · 2017 · <span class="cite">Cited by 72</span></p>
+    <p class="pub-meta">The journal of defense modeling and simulation 14 (1), 17-32 · 2017 · <span class="cite">Cited by 72</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://link.springer.com/article/10.1007/s10700-012-9130-0">Triply Fuzzy Function Approximation for Hierarchical Bayesian Inference</a>
-    <p class="pub-meta">Fuzzy Optimization and Decision Making 11 (3), 241-268, 2012 · 2012 · <span class="cite">Cited by 5</span></p>
+    <p class="pub-meta">Fuzzy Optimization and Decision Making 11 (3), 241-268 · 2012 · <span class="cite">Cited by 5</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://ieeexplore.ieee.org/abstract/document/5743025/">Bayesian Inference with Adaptive Fuzzy Priors and Likelihoods</a>
-    <p class="pub-meta">IEEE Transactions on Systems, Man, and Cybernetics, Part B (Cybernetics) 41 …, 2011 · 2011 · <span class="cite">Cited by 36</span></p>
+    <p class="pub-meta">IEEE Transactions on Systems, Man, and Cybernetics, Part B (Cybernetics) 41 … · 2011 · <span class="cite">Cited by 36</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://ieeexplore.ieee.org/abstract/document/6033632/">Triply Fuzzy Function Approximation for Bayesian Inference</a>
-    <p class="pub-meta">The 2011 International Joint Conference on Neural Networks, 3105-3111, 2011 · 2011</p>
+    <p class="pub-meta">The 2011 International Joint Conference on Neural Networks, 3105-3111 · 2011</p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://ieeexplore.ieee.org/abstract/document/5179054/">Adaptive Fuzzy Priors for Bayesian Inference</a>
-    <p class="pub-meta">2009 International Joint Conference on Neural Networks, 2380-2387, 2009 · 2009 · <span class="cite">Cited by 2</span></p>
+    <p class="pub-meta">2009 International Joint Conference on Neural Networks, 2380-2387 · 2009 · <span class="cite">Cited by 2</span></p>
   </div>
 </section>
 <section class="pub-group" data-cluster="noise">
   <h3 class="pub-group-title">Noise Benefits in Machine Learning</h3>
   <div class="pub">
     <a class="pub-title" href="https://patents.google.com/patent/US11495213B2/en">Noise Speed-Ups in Hidden Markov Models with Applications to Speech Recognition</a>
-    <p class="pub-meta">US Patent 11,495,213, 2022 · 2022 · <span class="cite">Cited by 5</span></p>
+    <p class="pub-meta">US Patent 11,495,213 · 2022 · <span class="cite">Cited by 5</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://arxiv.org/abs/1801.04053">Noisy Expectation-Maximization: Applications and Generalizations</a>
-    <p class="pub-meta">arXiv preprint arXiv:1801.04053, 2018 · 2018 · <span class="cite">Cited by 1</span></p>
+    <p class="pub-meta">arXiv preprint arXiv:1801.04053 · 2018 · <span class="cite">Cited by 1</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://www.sciencedirect.com/science/article/pii/S0893608015001896">Noise-Enhanced Convolutional Neural Networks</a>
-    <p class="pub-meta">Neural Networks 78, 15-23, 2016 · 2016 · <span class="cite">Cited by 216</span></p>
+    <p class="pub-meta">Neural Networks 78, 15-23 · 2016 · <span class="cite">Cited by 216</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://www.worldscientific.com/doi/abs/10.1142/S0219477516500073">The Noisy Expectation-Maximization Algorithm for Multiplicative Noise Injection</a>
-    <p class="pub-meta">Fluctuation and Noise Letters 15 (01), 1650007, 2016 · 2016 · <span class="cite">Cited by 29</span></p>
+    <p class="pub-meta">Fluctuation and Noise Letters 15 (01), 1650007 · 2016 · <span class="cite">Cited by 29</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://patents.google.com/patent/US20160034814A1/en">Noise-Boosted Back Propagation and Deep Learning Neural Networks</a>
-    <p class="pub-meta">US Patent App. 14/816,999, 2016 · 2016 · <span class="cite">Cited by 20</span></p>
+    <p class="pub-meta">US Patent App. 14/816,999 · 2016 · <span class="cite">Cited by 20</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://patents.google.com/patent/US9390065/en">Iterative Estimation of System Parameters Using Noise-Like Perturbations</a>
-    <p class="pub-meta">US Patent 9,390,065, 2016 · 2016 · <span class="cite">Cited by 8</span></p>
+    <p class="pub-meta">US Patent 9,390,065 · 2016 · <span class="cite">Cited by 8</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://patents.google.com/patent/US20150161232A1/en">Noise-Enhanced Clustering and Competitive Learning</a>
-    <p class="pub-meta">US Patent App. 14/553,890, 2015 · 2015 · <span class="cite">Cited by 12</span></p>
+    <p class="pub-meta">US Patent App. 14/553,890 · 2015 · <span class="cite">Cited by 12</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="http://world-comp.org/preproc2014/ABD3492.pdf">Noise Benefits in Convolutional Neural Networks</a>
-    <p class="pub-meta">Proceedings of the 2014 International Conference on Advances in Big Data …, 2014 · 2014 · <span class="cite">Cited by 7</span></p>
+    <p class="pub-meta">Proceedings of the 2014 International Conference on Advances in Big Data … · 2014 · <span class="cite">Cited by 7</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://arxiv.org/abs/1411.6622">Noise Benefits in Expectation-Maximization Algorithms</a>
-    <p class="pub-meta">arXiv preprint arXiv:1411.6622, 2014 · 2014 · <span class="cite">Cited by 6</span></p>
+    <p class="pub-meta">arXiv preprint arXiv:1411.6622 · 2014 · <span class="cite">Cited by 6</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://ieeexplore.ieee.org/abstract/document/6707022/">Noise Benefits in Backpropagation and Deep Bidirectional Pre-Training</a>
-    <p class="pub-meta">The 2013 International Joint Conference on Neural Networks (IJCNN), 1-8, 2013 · 2013 · <span class="cite">Cited by 53</span></p>
+    <p class="pub-meta">The 2013 International Joint Conference on Neural Networks (IJCNN), 1-8 · 2013 · <span class="cite">Cited by 53</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://www.sciencedirect.com/science/article/pii/S0893608012002420">Noise-Enhanced Clustering and Competitive Learning Algorithms</a>
-    <p class="pub-meta">Neural Networks 37, 132-140, 2013 · 2013 · <span class="cite">Cited by 50</span></p>
+    <p class="pub-meta">Neural Networks 37, 132-140 · 2013 · <span class="cite">Cited by 50</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://www.worldscientific.com/doi/abs/10.1142/S0219477513500120">The Noisy Expectation–Maximization Algorithm</a>
-    <p class="pub-meta">Fluctuation and Noise Letters 12 (03), 1350012, 2013 · 2013 · <span class="cite">Cited by 47</span></p>
+    <p class="pub-meta">Fluctuation and Noise Letters 12 (03), 1350012 · 2013 · <span class="cite">Cited by 47</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://ieeexplore.ieee.org/abstract/document/6707088/">Noisy Hidden Markov Models for Speech Recognition</a>
-    <p class="pub-meta">The 2013 international joint conference on neural networks (IJCNN), 1-6, 2013 · 2013 · <span class="cite">Cited by 27</span></p>
+    <p class="pub-meta">The 2013 international joint conference on neural networks (IJCNN), 1-6 · 2013 · <span class="cite">Cited by 27</span></p>
   </div>
   <div class="pub">
     <a class="pub-title" href="https://ieeexplore.ieee.org/abstract/document/6033642/">Noise Benefits in the Expectation-Maximization Algorithm: NEM Theorems and Models</a>
-    <p class="pub-meta">The 2011 International Joint Conference on Neural Networks, 3178-3183, 2011 · 2011 · <span class="cite">Cited by 19</span></p>
+    <p class="pub-meta">The 2011 International Joint Conference on Neural Networks, 3178-3183 · 2011 · <span class="cite">Cited by 19</span></p>
   </div>
 </section>
 </div>
       </section>
 
       <!-- SERVICE ----------------------------------------------------------- -->
-      <section class="panel" id="service" role="tabpanel">
+      <section class="panel" id="service">
         <h2>Teaching</h2>
         <p>Graduate-level courses across the technical and policy sides of AI and data science:</p>
         <ul>
@@ -264,12 +268,12 @@
       </section>
 
       <!-- WRITING & TALKS --------------------------------------------------- -->
-      <section class="panel" id="writing" role="tabpanel">
+      <section class="panel" id="writing">
         <h2>Posts</h2>
-        <div class="chips" id="tag-chips" aria-label="Filter posts by tag">
-  <button type="button" class="chip active" data-tag="all">All <span class="chip-count">1</span></button>
-  <button type="button" class="chip" data-tag="example">example <span class="chip-count">1</span></button>
-  <button type="button" class="chip" data-tag="meta">meta <span class="chip-count">1</span></button>
+        <div class="chips" id="tag-chips" role="group" aria-label="Filter posts by tag">
+  <button type="button" class="chip active" data-tag="all" aria-pressed="true">All <span class="chip-count">1</span></button>
+  <button type="button" class="chip" data-tag="example" aria-pressed="false">example <span class="chip-count">1</span></button>
+  <button type="button" class="chip" data-tag="meta" aria-pressed="false">meta <span class="chip-count">1</span></button>
 </div>
 <div class="post-list">
 <div class="post-item" data-tags="meta example">
@@ -282,19 +286,19 @@
         <h2>Commentary &amp; op-eds</h2>
         <div class="entry">
           <div class="entry-title">Bans on Facial Recognition Are Naive. Hold Law Enforcement Accountable for Its Abuse.</div>
-          <div class="entry-meta">with D. Yeung · RAND, 2020 · also in <a href="https://thehill.com/opinion/technology/503070-bans-on-facial-recognition-are-naive-hold-law-enforcement-accountable-for">The Hill</a> · <a href="https://www.rand.org/blog/2020/06/bans-on-facial-recognition-are-naive-hold-law-enforcement.html">RAND</a></div>
+          <div class="entry-meta">with D. Yeung · RAND, 2020 · also in <a href="https://thehill.com/opinion/technology/503070-bans-on-facial-recognition-are-naive-hold-law-enforcement-accountable-for">The Hill</a> · <a href="https://www.rand.org/pubs/commentary/2020/06/bans-on-facial-recognition-are-nave-hold-law-enforcement.html">RAND</a></div>
         </div>
         <div class="entry">
           <div class="entry-title">Did No One Audit the Apple Card Algorithm?</div>
-          <div class="entry-meta">RAND, 2019 · <a href="https://www.rand.org/blog/2019/11/did-no-one-audit-the-apple-card-algorithm.html">RAND</a></div>
+          <div class="entry-meta">RAND, 2019 · <a href="https://www.rand.org/pubs/commentary/2019/11/did-no-one-audit-the-apple-card-algorithm.html">RAND</a></div>
         </div>
         <div class="entry">
           <div class="entry-title">Keeping Artificial Intelligence Accountable to Humans.</div>
-          <div class="entry-meta">RAND, 2018 · also in <a href="https://techcrunch.com/2018/08/20/keeping-artificial-intelligence-accountable-to-humans/">TechCrunch</a> · <a href="https://www.rand.org/blog/2018/08/keeping-artificial-intelligence-accountable-to-humans.html">RAND</a></div>
+          <div class="entry-meta">RAND, 2018 · also in <a href="https://techcrunch.com/2018/08/20/keeping-artificial-intelligence-accountable-to-humans/">TechCrunch</a> · <a href="https://www.rand.org/pubs/commentary/2018/08/keeping-artificial-intelligence-accountable-to-humans.html">RAND</a></div>
         </div>
         <div class="entry">
           <div class="entry-title">Rethinking Data Privacy.</div>
-          <div class="entry-meta">with J. S. Davis (co-first authors) · RAND, 2016 · <a href="http://www.rand.org/blog/2016/10/rethinking-data-privacy.html">RAND</a></div>
+          <div class="entry-meta">with J. S. Davis (co-first authors) · RAND, 2016 · <a href="https://www.rand.org/pubs/commentary/2016/10/rethinking-data-privacy.html">RAND</a></div>
         </div>
 
         <h2>Selected speeches &amp; talks</h2>

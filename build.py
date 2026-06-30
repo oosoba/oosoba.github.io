@@ -135,10 +135,15 @@ def titlecase(title):
 def render_meta(p):
     parts = []
     venue = (p.get("venue") or "").strip()
+    if "bound method" in venue.lower() or "<" in venue:  # guard against scraper repr leaks
+        venue = ""
+    year = p.get("year")
+    if venue and year:  # the year is shown separately; drop a trailing duplicate
+        venue = re.sub(rf",?\s*{re.escape(str(year))}\s*$", "", venue).rstrip(", ")
     if venue:
         parts.append(html.escape(venue))
-    if p.get("year"):
-        parts.append(str(p["year"]))
+    if year:
+        parts.append(str(year))
     cc = p.get("citation_count", 0) or 0
     line = " · ".join(parts)
     if cc > 0:
@@ -153,11 +158,11 @@ def render_publications(groups):
     out = []
 
     # Filter chips (always visible): All + one per cluster.
-    out.append('<div class="chips" id="cluster-chips" role="tablist" aria-label="Filter by research area">')
-    out.append('  <button type="button" class="chip active" data-cluster="all">'
+    out.append('<div class="chips" id="cluster-chips" role="group" aria-label="Filter by research area">')
+    out.append('  <button type="button" class="chip active" data-cluster="all" aria-pressed="true">'
                f'All <span class="chip-count">{total}</span></button>')
     for k in nonempty:
-        out.append(f'  <button type="button" class="chip" data-cluster="{k}">'
+        out.append(f'  <button type="button" class="chip" data-cluster="{k}" aria-pressed="false">'
                    f'{html.escape(SHORT.get(k, TITLES[k]))} '
                    f'<span class="chip-count">{len(groups[k])}</span></button>')
     out.append('</div>')
@@ -227,7 +232,8 @@ def parse_front_matter(text):
 
 def format_date(d):
     try:
-        return datetime.strptime(d.strip(), "%Y-%m-%d").strftime("%B %-d, %Y")
+        dt = datetime.strptime(d.strip(), "%Y-%m-%d")
+        return f"{dt.strftime('%B')} {dt.day}, {dt.year}"  # %-d is glibc-only; use dt.day
     except (ValueError, AttributeError):
         return d
 
@@ -249,6 +255,7 @@ def render_posts():
         tmpl = f.read()
     md = make_markdown()
     posts = []
+    used = set()
     for fn in sorted(os.listdir(POSTS_DIR)):
         if not fn.endswith(".md"):
             continue
@@ -258,14 +265,23 @@ def render_posts():
             continue
         md.reset()
         content = md.convert(body)
-        slug = meta.get("slug") or re.sub(r"^\d{4}-\d{2}-\d{2}-", "", fn[:-3])
+        base = meta.get("slug") or re.sub(r"^\d{4}-\d{2}-\d{2}-", "", fn[:-3])
+        slug, n = base, 2
+        while slug in used:           # de-collide like the publications converter
+            slug, n = f"{base}-{n}", n + 1
+        used.add(slug)
         title = meta.get("title", slug)
         summary = meta.get("summary", "")
         tags = meta.get("tags", [])
-        page = (tmpl.replace("{{TITLE}}", html.escape(title))
-                    .replace("{{SUMMARY}}", html.escape(summary))
-                    .replace("{{META}}", format_post_meta(meta.get("date", ""), tags))
-                    .replace("{{CONTENT}}", content))
+        # Single-pass substitution: a value containing "{{X}}" is never re-expanded.
+        repl = {
+            "TITLE": html.escape(title),
+            "SUMMARY": html.escape(summary),
+            "META": format_post_meta(meta.get("date", ""), tags),
+            "CONTENT": content,
+            "CANONICAL": f"{SITE_URL}/writing/{slug}.html",
+        }
+        page = re.sub(r"\{\{(\w+)\}\}", lambda m: repl.get(m.group(1), m.group(0)), tmpl)
         with open(os.path.join(WRITING_DIR, slug + ".html"), "w") as f:
             f.write(page)
         posts.append({"slug": slug, "title": title, "summary": summary,
@@ -280,11 +296,11 @@ def render_post_index(posts):
     out = []
     tagcount = Counter(t for p in posts for t in p["tags"])
     if tagcount:
-        out.append('<div class="chips" id="tag-chips" aria-label="Filter posts by tag">')
-        out.append('  <button type="button" class="chip active" data-tag="all">'
+        out.append('<div class="chips" id="tag-chips" role="group" aria-label="Filter posts by tag">')
+        out.append('  <button type="button" class="chip active" data-tag="all" aria-pressed="true">'
                    f'All <span class="chip-count">{len(posts)}</span></button>')
         for tag, c in sorted(tagcount.items()):
-            out.append(f'  <button type="button" class="chip" data-tag="{html.escape(tag)}">'
+            out.append(f'  <button type="button" class="chip" data-tag="{html.escape(tag)}" aria-pressed="false">'
                        f'{html.escape(tag)} <span class="chip-count">{c}</span></button>')
         out.append('</div>')
     out.append('<div class="post-list">')
