@@ -23,6 +23,7 @@ import json_to_publications as jp  # noqa: E402
 POSTS_DIR = os.path.join(ROOT, "posts")
 WRITING_DIR = os.path.join(ROOT, "writing")
 POST_TEMPLATE = os.path.join(ROOT, "post.template.html")
+SITE_URL = "https://ope-osoba.me"
 
 SOURCE = jp.DEFAULT_SOURCE
 TEMPLATE = os.path.join(ROOT, "index.template.html")
@@ -300,6 +301,21 @@ def render_post_index(posts):
     return "\n".join(out)
 
 
+def write_sitemap(posts):
+    today = datetime.now().strftime("%Y-%m-%d")
+    urls = [(f"{SITE_URL}/", today)]
+    for p in posts:
+        urls.append((f"{SITE_URL}/writing/{p['slug']}.html", p.get("date") or today))
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for loc, lastmod in urls:
+        lines.append(f"  <url><loc>{html.escape(loc)}</loc><lastmod>{lastmod}</lastmod></url>")
+    lines.append("</urlset>")
+    with open(os.path.join(ROOT, "sitemap.xml"), "w") as f:
+        f.write("\n".join(lines) + "\n")
+    return len(urls)
+
+
 def main():
     groups = featured_publications()
     total = sum(len(v) for v in groups.values())
@@ -325,6 +341,8 @@ def main():
         if groups.get(k):
             print(f"    {len(groups[k]):2d}  {TITLES[k]}")
     print(f"  {len(posts)} blog post(s) -> writing/")
+    n = write_sitemap(posts)
+    print(f"  sitemap.xml: {n} URL(s)")
     return 0
 
 

@@ -1,0 +1,5 @@
+# Welcome — crawl freely, including AI crawlers.
+User-agent: *
+Allow: /
+
+Sitemap: https://ope-osoba.me/sitemap.xml
